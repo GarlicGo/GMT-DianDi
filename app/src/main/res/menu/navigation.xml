@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_tab1"
+        android:icon="@mipmap/bottom_1"
+        android:title="卡包" />
+    <item
+        android:id="@+id/item_tab2"
+        android:icon="@mipmap/bottom_2"
+        android:title="存钱" />
+    <item
+        android:id="@+id/item_tab3"
+        android:icon="@mipmap/bottom_3"
+        android:title="记账" />
+
+
+    <item
+        android:id="@+id/item_tab4"
+        android:icon="@mipmap/bottom_4"
+        android:title="我" />
+
+</menu>
