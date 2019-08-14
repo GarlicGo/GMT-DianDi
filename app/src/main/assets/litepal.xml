@@ -1,0 +1,15 @@
+<litepal>
+    <dbname value="GMT_App_DianDi"/>
+
+    <version value="1"/>
+
+    <list>
+        <mapping class="com.example.bottomtesttwo.db.Information_Account"/>
+        <mapping class="com.example.bottomtesttwo.db.Information_MoneyCard"/>
+        <mapping class="com.example.bottomtesttwo.db.Information_Personal"/>
+        <mapping class="com.example.bottomtesttwo.db.Records_Accounting"/>
+        <mapping class="com.example.bottomtesttwo.db.Record_Saving"/>
+        <mapping class="com.example.bottomtesttwo.db.Target_SavingMoney"/>
+    </list>
+
+</litepal>
