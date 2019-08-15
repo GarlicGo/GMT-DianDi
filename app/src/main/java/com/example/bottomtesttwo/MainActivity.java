@@ -7,11 +7,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.WindowManager;
 
 import com.example.bottomtesttwo.fragments.Fragment1;
 import com.example.bottomtesttwo.fragments.Fragment2;
 import com.example.bottomtesttwo.fragments.Fragment3;
 import com.example.bottomtesttwo.fragments.Fragment4;
+import com.example.bottomtesttwo.util.StatusBar.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +42,15 @@ public class MainActivity extends AppCompatActivity {
 //        //去掉最上面时间、电量等
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN
 //                , WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        //顶部状态栏设置
+        //当FitsSystemWindows设置 true 时，会在屏幕最上方预留出状态栏高度的 padding
+        StatusBarUtil.setRootViewFitsSystemWindows(this,false);
+        //设置状态栏透明
+        StatusBarUtil.setTranslucentStatus(this);
+        //true=黑色字体  false=白色
+        StatusBarUtil.setStatusBarDarkTheme(this, true);
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
