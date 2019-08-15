@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+//状态栏管理类2
 public class OSUtils {
     public static final String ROM_MIUI = "MIUI";
     public static final String ROM_EMUI = "EMUI";

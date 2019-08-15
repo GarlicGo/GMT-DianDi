@@ -17,6 +17,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+//状态栏管理类3
 public class StatusBarUtil {
 
     public final static int TYPE_MIUI = 0;

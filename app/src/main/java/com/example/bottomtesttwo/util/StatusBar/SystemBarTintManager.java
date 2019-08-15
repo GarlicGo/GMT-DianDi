@@ -41,6 +41,8 @@ import java.lang.reflect.Method;
  * translucent system UI modes.
  *
  */
+
+//状态栏管理类1
 public class SystemBarTintManager {
 
     static {
