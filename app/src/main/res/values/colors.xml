@@ -6,4 +6,5 @@
 
     <color name="tab_checked">#255bfc</color>
     <color name="tab_unchecked">#757575</color>
+    <color name="textWhite">#FFFFFF</color>
 </resources>

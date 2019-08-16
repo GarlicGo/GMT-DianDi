@@ -64,15 +64,42 @@ public class MainActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     case R.id.item_tab1:
                         mViewPager.setCurrentItem(0);
+
+                        //顶部状态栏设置
+                        StatusBarUtil.setRootViewFitsSystemWindows(MainActivity.this,false);//当FitsSystemWindows设置 true 时，会在屏幕最上方预留出状态栏高度的 padding
+                        StatusBarUtil.setTranslucentStatus(MainActivity.this);//设置状态栏透明
+                        StatusBarUtil.setStatusBarDarkTheme(MainActivity.this, true);//true=黑色字体  false=白色
+
+
                         return true;
                     case R.id.item_tab2:
                         mViewPager.setCurrentItem(1);
+
+                        //顶部状态栏设置
+                        StatusBarUtil.setRootViewFitsSystemWindows(MainActivity.this,false);//当FitsSystemWindows设置 true 时，会在屏幕最上方预留出状态栏高度的 padding
+                        StatusBarUtil.setTranslucentStatus(MainActivity.this);//设置状态栏透明
+                        StatusBarUtil.setStatusBarDarkTheme(MainActivity.this, true);//true=黑色字体  false=白色
+
+
                         return true;
                     case R.id.item_tab3:
                         mViewPager.setCurrentItem(2);
+
+                        //顶部状态栏设置
+                        StatusBarUtil.setRootViewFitsSystemWindows(MainActivity.this,true);//当FitsSystemWindows设置 true 时，会在屏幕最上方预留出状态栏高度的 padding
+                        StatusBarUtil.setTranslucentStatus(MainActivity.this);//设置状态栏透明
+                        StatusBarUtil.setStatusBarDarkTheme(MainActivity.this, false);//true=黑色字体  false=白色
+
                         return true;
                     case R.id.item_tab4:
                         mViewPager.setCurrentItem(3);
+
+                        //顶部状态栏设置
+                        StatusBarUtil.setRootViewFitsSystemWindows(MainActivity.this,false);//当FitsSystemWindows设置 true 时，会在屏幕最上方预留出状态栏高度的 padding
+                        StatusBarUtil.setTranslucentStatus(MainActivity.this);//设置状态栏透明
+                        StatusBarUtil.setStatusBarDarkTheme(MainActivity.this, true);//true=黑色字体  false=白色
+
+
                         return true;
                 }
                 return false;
