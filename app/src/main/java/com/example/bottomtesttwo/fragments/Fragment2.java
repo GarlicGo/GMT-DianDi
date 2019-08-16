@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.example.bottomtesttwo.R;
 
+//存钱页
 public class Fragment2 extends Fragment {
 
 

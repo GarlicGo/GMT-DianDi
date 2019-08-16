@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.example.bottomtesttwo.R;
 
+//卡包页
 public class Fragment1 extends Fragment {
 
 

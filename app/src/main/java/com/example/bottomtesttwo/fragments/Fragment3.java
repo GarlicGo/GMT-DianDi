@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.example.bottomtesttwo.R;
 
+//记账页
 public class Fragment3 extends Fragment {
 
 

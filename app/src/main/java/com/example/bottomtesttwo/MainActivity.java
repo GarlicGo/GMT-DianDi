@@ -38,8 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         //去掉顶部标题
         getSupportActionBar().hide();
-
-//        //去掉最上面时间、电量等
+//        //去掉最上面状态栏
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN
 //                , WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -104,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
         mPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mPagerAdapter);
+
         List<Fragment> list = new ArrayList<>();
         list.add(fragment1.newInstance());
         list.add(fragment2.newInstance());
