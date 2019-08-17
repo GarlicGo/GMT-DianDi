@@ -75,14 +75,19 @@ public class Fragment3 extends Fragment implements View.OnClickListener {
             case R.id.analyze_income_text:
                 Intent intentIncome = new Intent(getActivity(), AnalyzeSpend.class);
                 startActivity(intentIncome);
+                break;
             case R.id.analyze_spend_img:
             case R.id.analyze_spend_text:
                 Intent intentSpend = new Intent(getActivity(), AnalyzeSpend.class);
                 startActivity(intentSpend);
+                break;
             case R.id.analyze_sum_img:
             case R.id.analyze_sum_text:
                 Intent intentSum = new Intent(getActivity(), AnalyzeSpend.class);
                 startActivity(intentSum);
+                break;
+                default:
+                    break;
 
         }
     }
