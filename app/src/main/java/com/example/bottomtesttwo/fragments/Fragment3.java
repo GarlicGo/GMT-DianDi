@@ -1,15 +1,30 @@
 package com.example.bottomtesttwo.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.bottomtesttwo.R;
+import com.example.bottomtesttwo.activity.AnalyzeSpend;
 
 //记账页
-public class Fragment3 extends Fragment {
+public class Fragment3 extends Fragment implements View.OnClickListener {
+
+    private View view;
+    private ImageView analyzeSpendImg;
+    private ImageView analyzeIncomeImg;
+    private ImageView analyzeSumImg;
+    private TextView analyzeSpendText;
+    private TextView analyzeIncomeText;
+    private TextView analyzeSumText;
 
 
     public Fragment3() {
@@ -24,12 +39,51 @@ public class Fragment3 extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_3, container, false);
+        view = inflater.inflate(R.layout.fragment_3, container, false);
+        return view;
+
+
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        analyzeSpendImg = (ImageView)view.findViewById(R.id.analyze_spend_img);
+        analyzeIncomeImg = (ImageView)view.findViewById(R.id.analyze_income_img);
+        analyzeSumImg = (ImageView)view.findViewById(R.id.analyze_sum_img);
+        analyzeSpendText = (TextView)view.findViewById(R.id.analyze_spend_text);
+        analyzeIncomeText = (TextView)view.findViewById(R.id.analyze_income_text);
+        analyzeSumText = (TextView)view.findViewById(R.id.analyze_sum_text);
+
+        analyzeSpendImg.setOnClickListener(this);
+        analyzeIncomeImg.setOnClickListener(this);
+        analyzeSumImg.setOnClickListener(this);
+        analyzeSpendText.setOnClickListener(this);
+        analyzeIncomeText.setOnClickListener(this);
+        analyzeSumText.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.analyze_income_img:
+            case R.id.analyze_income_text:
+                Intent intentIncome = new Intent(getActivity(), AnalyzeSpend.class);
+                startActivity(intentIncome);
+            case R.id.analyze_spend_img:
+            case R.id.analyze_spend_text:
+                Intent intentSpend = new Intent(getActivity(), AnalyzeSpend.class);
+                startActivity(intentSpend);
+            case R.id.analyze_sum_img:
+            case R.id.analyze_sum_text:
+                Intent intentSum = new Intent(getActivity(), AnalyzeSpend.class);
+                startActivity(intentSum);
+
+        }
+    }
 }

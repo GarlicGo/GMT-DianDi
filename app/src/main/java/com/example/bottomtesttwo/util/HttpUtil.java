@@ -11,5 +11,4 @@ public class HttpUtil {
         Request request = new Request.Builder().url(adress).build();
         client.newCall(request).enqueue(callback);
     }
-
 }
