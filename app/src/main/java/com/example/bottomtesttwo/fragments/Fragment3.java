@@ -1,6 +1,7 @@
 package com.example.bottomtesttwo.fragments;
 
 import android.content.Intent;
+import android.graphics.ColorSpace;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 import com.example.bottomtesttwo.R;
 import com.example.bottomtesttwo.activity.AnalyzeSpend;
 
+import org.litepal.tablemanager.Connector;
+
 //记账页
 public class Fragment3 extends Fragment implements View.OnClickListener {
 
@@ -26,6 +29,7 @@ public class Fragment3 extends Fragment implements View.OnClickListener {
     private TextView analyzeIncomeText;
     private TextView analyzeSumText;
 
+    private Button testButton1;
 
     public Fragment3() {
     }
@@ -59,6 +63,9 @@ public class Fragment3 extends Fragment implements View.OnClickListener {
         analyzeIncomeText = (TextView)view.findViewById(R.id.analyze_income_text);
         analyzeSumText = (TextView)view.findViewById(R.id.analyze_sum_text);
 
+        testButton1 = (Button)view.findViewById(R.id.test_button1);
+        testButton1.setOnClickListener(this);
+
         analyzeSpendImg.setOnClickListener(this);
         analyzeIncomeImg.setOnClickListener(this);
         analyzeSumImg.setOnClickListener(this);
@@ -86,6 +93,9 @@ public class Fragment3 extends Fragment implements View.OnClickListener {
                 Intent intentSum = new Intent(getActivity(), AnalyzeSpend.class);
                 startActivity(intentSum);
                 break;
+            case R.id.test_button1:
+                Connector.getDatabase();
+
                 default:
                     break;
 

@@ -6,7 +6,7 @@ import org.litepal.crud.DataSupport;
 public class Record_Saving extends DataSupport {
 
     private long id;//
-    private String savingRecordTip;//存钱备注
+    private String recordSavingRecordTip;//存钱备注
     private long recordSavingDate;//存钱日期
     private float recordSavingMoneyNumber;//存钱金额
     private long recordSavingTo;//转入类别
@@ -20,12 +20,12 @@ public class Record_Saving extends DataSupport {
         this.id = id;
     }
 
-    public String getSavingRecordTip() {
-        return savingRecordTip;
+    public String getRecordSavingRecordTip() {
+        return recordSavingRecordTip;
     }
 
-    public void setSavingRecordTip(String savingRecordTip) {
-        this.savingRecordTip = savingRecordTip;
+    public void setRecordSavingRecordTip(String recordSavingRecordTip) {
+        this.recordSavingRecordTip = recordSavingRecordTip;
     }
 
     public long getRecordSavingDate() {

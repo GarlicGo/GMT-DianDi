@@ -8,7 +8,7 @@ import java.util.List;
 //个人信息
 public class Information_Personal extends DataSupport {
 
-    private long personId;//用户ID
+    private long id;//用户ID
     private String userAccount;//账号
     private String characterPassword;//字符密码
 
@@ -31,12 +31,12 @@ public class Information_Personal extends DataSupport {
     private List<Records_Accounting> recordAccounting_List = new ArrayList<Records_Accounting>();
     private List<Target_SavingMoney> targetSaving_List = new ArrayList<Target_SavingMoney>();
 
-    public long getPersonId() {
-        return personId;
+    public long getId() {
+        return id;
     }
 
-    public void setPersonId(long personId) {
-        this.personId = personId;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getUserAccount() {

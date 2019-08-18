@@ -90,4 +90,10 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/test_button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="创建数据库"/>
+
 </LinearLayout>

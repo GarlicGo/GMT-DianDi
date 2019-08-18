@@ -8,7 +8,7 @@ public class Information_MoneyCard extends DataSupport {
     private long Id;//卡户ID
     private String moneyCardContext;//卡户名称
     private String moneyCardTip;//卡户介绍
-    private String moneyCardImg;//账号封面图片
+    private String moneyCardImage;//账号封面图片
     private long moneyCardRestMoney;//余额
 
     public long getId() {
@@ -35,12 +35,12 @@ public class Information_MoneyCard extends DataSupport {
         this.moneyCardTip = moneyCardTip;
     }
 
-    public String getMoneyCardImg() {
-        return moneyCardImg;
+    public String getMoneyCardImage() {
+        return moneyCardImage;
     }
 
-    public void setMoneyCardImg(String moneyCardImg) {
-        this.moneyCardImg = moneyCardImg;
+    public void setMoneyCardImage(String moneyCardImage) {
+        this.moneyCardImage = moneyCardImage;
     }
 
     public long getMoneyCardRestMoney() {
