@@ -2,14 +2,21 @@ package com.example.bottomtesttwo.db;
 
 import org.litepal.crud.DataSupport;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //存钱目标
 public class Target_SavingMoney extends DataSupport {
+
     private long id;//
-    private String userId;  //用户id
+    private long targetHopeMoney;//存钱目标钱数
     private long targetTime;//存钱时长
-    private long timeStart;//开始时间
-    private float targetMoney;//存钱目标
-    private float savedMoney;//已存钱数
+    private long targetStart;//开始时间
+    private long targetLastFrom;//上一次转出卡包对象
+    private long targetLastTo;//上一次转入卡包对象
+
+    //与其他表关联
+    private List<Record_Saving> target_recordSavingList = new ArrayList<Record_Saving>();
 
     public long getId() {
         return id;
@@ -19,12 +26,12 @@ public class Target_SavingMoney extends DataSupport {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public long getTargetHopeMoney() {
+        return targetHopeMoney;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setTargetHopeMoney(long targetHopeMoney) {
+        this.targetHopeMoney = targetHopeMoney;
     }
 
     public long getTargetTime() {
@@ -35,35 +42,35 @@ public class Target_SavingMoney extends DataSupport {
         this.targetTime = targetTime;
     }
 
-    public long getTimeStart() {
-        return timeStart;
+    public long getTargetStart() {
+        return targetStart;
     }
 
-    public void setTimeStart(long timeStart) {
-        this.timeStart = timeStart;
+    public void setTargetStart(long targetStart) {
+        this.targetStart = targetStart;
     }
 
-    public float getTargetMoney() {
-        return targetMoney;
+    public long getTargetLastFrom() {
+        return targetLastFrom;
     }
 
-    public void setTargetMoney(long targetMoney) {
-        this.targetMoney = targetMoney;
+    public void setTargetLastFrom(long targetLastFrom) {
+        this.targetLastFrom = targetLastFrom;
     }
 
-    public float getSavedMoney() {
-        return savedMoney;
+    public long getTargetLastTo() {
+        return targetLastTo;
     }
 
-    public void setSavedMoney(long savedMoney) {
-        this.savedMoney = savedMoney;
+    public void setTargetLastTo(long targetLastTo) {
+        this.targetLastTo = targetLastTo;
     }
 
-    public void setTargetMoney(float targetMoney) {
-        this.targetMoney = targetMoney;
+    public List<Record_Saving> getTarget_recordSavingList() {
+        return target_recordSavingList;
     }
 
-    public void setSavedMoney(float savedMoney) {
-        this.savedMoney = savedMoney;
+    public void setTarget_recordSavingList(List<Record_Saving> target_recordSavingList) {
+        this.target_recordSavingList = target_recordSavingList;
     }
 }

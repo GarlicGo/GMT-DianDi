@@ -5,58 +5,49 @@ import org.litepal.crud.DataSupport;
 //卡户信息-存储用户的众多卡户（能存钱的）
 public class Information_MoneyCard extends DataSupport {
 
-    private long id;//
-    private String userId;  //用户id
-    private String mardContext;//卡户名称
-    private String cardTip;//卡户介绍
-    private String cardImg;//账号封面图片
-    private long cardRestMoney;//余额
+    private long Id;//卡户ID
+    private String moneyCardContext;//卡户名称
+    private String moneyCardTip;//卡户介绍
+    private String moneyCardImg;//账号封面图片
+    private long moneyCardRestMoney;//余额
 
     public long getId() {
-        return id;
+        return Id;
     }
 
     public void setId(long id) {
-        this.id = id;
+        Id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getMoneyCardContext() {
+        return moneyCardContext;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setMoneyCardContext(String moneyCardContext) {
+        this.moneyCardContext = moneyCardContext;
     }
 
-    public String getMardContext() {
-        return mardContext;
+    public String getMoneyCardTip() {
+        return moneyCardTip;
     }
 
-    public void setMardContext(String mardContext) {
-        this.mardContext = mardContext;
+    public void setMoneyCardTip(String moneyCardTip) {
+        this.moneyCardTip = moneyCardTip;
     }
 
-    public String getCardTip() {
-        return cardTip;
+    public String getMoneyCardImg() {
+        return moneyCardImg;
     }
 
-    public void setCardTip(String cardTip) {
-        this.cardTip = cardTip;
+    public void setMoneyCardImg(String moneyCardImg) {
+        this.moneyCardImg = moneyCardImg;
     }
 
-    public String getCardImg() {
-        return cardImg;
+    public long getMoneyCardRestMoney() {
+        return moneyCardRestMoney;
     }
 
-    public void setCardImg(String cardImg) {
-        this.cardImg = cardImg;
-    }
-
-    public long getCardRestMoney() {
-        return cardRestMoney;
-    }
-
-    public void setCardRestMoney(long cardRestMoney) {
-        this.cardRestMoney = cardRestMoney;
+    public void setMoneyCardRestMoney(long moneyCardRestMoney) {
+        this.moneyCardRestMoney = moneyCardRestMoney;
     }
 }

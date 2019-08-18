@@ -5,16 +5,14 @@ import org.litepal.crud.DataSupport;
 //记账记录
 public class Records_Accounting extends DataSupport {
 
-    private long id;
-    private String userId;  //用户id
-    private boolean inOrOut;//操作类型：支出/收入
-    private int accountOperationType;//记账类型：1-50支出类别；51-100收入类别；
-    private String payImg;//记账类型图片
-    private String accountRecordTip;//记账备注
-    private int typeMoneyCard;//卡包操作对象
-    private long accountDate;//记账日期
-    private float accountMoneyNumber;//记账金额
-
+    private long id;//
+    private long recordFirstType;//大类别（支出/收入/转账；默认为支出）
+    private long recordSecondType;//小类别（快递/餐饮/...）
+    private String recordSecondTypeImage;//小类别对应图片
+    private long recordAccountingDate;//记账日期
+    private String recordAccountintTip;//记账备注
+    private float recordAccountMoneyNumber;//记账金额
+    private long recordAccountingMoneyCard;//卡包操作对象
 
     public long getId() {
         return id;
@@ -24,69 +22,59 @@ public class Records_Accounting extends DataSupport {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public long getRecordFirstType() {
+        return recordFirstType;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setRecordFirstType(long recordFirstType) {
+        this.recordFirstType = recordFirstType;
     }
 
-    public boolean isInOrOut() {
-        return inOrOut;
+    public long getRecordSecondType() {
+        return recordSecondType;
     }
 
-    public void setInOrOut(boolean inOrOut) {
-        this.inOrOut = inOrOut;
+    public void setRecordSecondType(long recordSecondType) {
+        this.recordSecondType = recordSecondType;
     }
 
-    public int getAccountOperationType() {
-        return accountOperationType;
+    public String getRecordSecondTypeImage() {
+        return recordSecondTypeImage;
     }
 
-    public void setAccountOperationType(int accountOperationType) {
-        this.accountOperationType = accountOperationType;
+    public void setRecordSecondTypeImage(String recordSecondTypeImage) {
+        this.recordSecondTypeImage = recordSecondTypeImage;
     }
 
-    public String getPayImg() {
-        return payImg;
+    public long getRecordAccountingDate() {
+        return recordAccountingDate;
     }
 
-    public void setPayImg(String payImg) {
-        this.payImg = payImg;
+    public void setRecordAccountingDate(long recordAccountingDate) {
+        this.recordAccountingDate = recordAccountingDate;
     }
 
-    public String getAccountRecordTip() {
-        return accountRecordTip;
+    public String getRecordAccountintTip() {
+        return recordAccountintTip;
     }
 
-    public void setAccountRecordTip(String accountRecordTip) {
-        this.accountRecordTip = accountRecordTip;
+    public void setRecordAccountintTip(String recordAccountintTip) {
+        this.recordAccountintTip = recordAccountintTip;
     }
 
-    public int getTypeMoneyCard() {
-        return typeMoneyCard;
+    public float getRecordAccountMoneyNumber() {
+        return recordAccountMoneyNumber;
     }
 
-    public void setTypeMoneyCard(int typeMoneyCard) {
-        this.typeMoneyCard = typeMoneyCard;
+    public void setRecordAccountMoneyNumber(float recordAccountMoneyNumber) {
+        this.recordAccountMoneyNumber = recordAccountMoneyNumber;
     }
 
-    public long getAccountDate() {
-        return accountDate;
+    public long getRecordAccountingMoneyCard() {
+        return recordAccountingMoneyCard;
     }
 
-    public void setAccountDate(long accountDate) {
-        this.accountDate = accountDate;
+    public void setRecordAccountingMoneyCard(long recordAccountingMoneyCard) {
+        this.recordAccountingMoneyCard = recordAccountingMoneyCard;
     }
-
-    public float getAccountMoneyNumber() {
-        return accountMoneyNumber;
-    }
-
-    public void setAccountMoneyNumber(float accountMoneyNumber) {
-        this.accountMoneyNumber = accountMoneyNumber;
-    }
-
-
 }

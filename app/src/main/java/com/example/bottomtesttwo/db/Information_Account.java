@@ -5,15 +5,14 @@ import org.litepal.crud.DataSupport;
 //账号本信息-存储用户的众多账号
 public class Information_Account extends DataSupport {
 
-    private long id;//
-    private String userId;  //用户id
-    private String accountContext;//账号名称
+    private long id;//用户ID
+    private String accountName;//账号名称
     private String accountTip;//账号介绍
-    private String accountImg;//账号封面图片
+    private String accountImage;//账号封面图片
 
-    private String accountName;//用户名
     private String accountNumber;//账号
     private String acoountPassword;//密码
+    private String accountWebName;//用户名
     private String accountPhoneNumber;//绑定手机
     private String accountEmailAdress;//绑定邮箱
     private String accountIdCard;//绑定身份证
@@ -28,7 +27,6 @@ public class Information_Account extends DataSupport {
     private String accountOwnDesign_3;
     private String accountOwnDesign_4;
 
-
     public long getId() {
         return id;
     }
@@ -37,20 +35,12 @@ public class Information_Account extends DataSupport {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getAccountName() {
+        return accountName;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getAccountContext() {
-        return accountContext;
-    }
-
-    public void setAccountContext(String accountContext) {
-        this.accountContext = accountContext;
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
     }
 
     public String getAccountTip() {
@@ -61,20 +51,12 @@ public class Information_Account extends DataSupport {
         this.accountTip = accountTip;
     }
 
-    public String getAccountImg() {
-        return accountImg;
+    public String getAccountImage() {
+        return accountImage;
     }
 
-    public void setAccountImg(String accountImg) {
-        this.accountImg = accountImg;
-    }
-
-    public String getAccountName() {
-        return accountName;
-    }
-
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
+    public void setAccountImage(String accountImage) {
+        this.accountImage = accountImage;
     }
 
     public String getAccountNumber() {
@@ -91,6 +73,14 @@ public class Information_Account extends DataSupport {
 
     public void setAcoountPassword(String acoountPassword) {
         this.acoountPassword = acoountPassword;
+    }
+
+    public String getAccountWebName() {
+        return accountWebName;
+    }
+
+    public void setAccountWebName(String accountWebName) {
+        this.accountWebName = accountWebName;
     }
 
     public String getAccountPhoneNumber() {

@@ -5,14 +5,12 @@ import org.litepal.crud.DataSupport;
 //存钱记录
 public class Record_Saving extends DataSupport {
 
-    private long id;
-    private String userId;  //用户id
+    private long id;//
     private String savingRecordTip;//存钱备注
-    private int savingTypeMoneyCard;//卡包操作对象
-    private String cardImg;//卡包操作对象图片
-    private long savingDate;//存钱日期
-    private float savingMoneyNumber;//存钱金额
-
+    private long recordSavingDate;//存钱日期
+    private float recordSavingMoneyNumber;//存钱金额
+    private long recordSavingTo;//转入类别
+    private long recordSavingFrom;//转出类别
 
     public long getId() {
         return id;
@@ -20,14 +18,6 @@ public class Record_Saving extends DataSupport {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     public String getSavingRecordTip() {
@@ -38,35 +28,35 @@ public class Record_Saving extends DataSupport {
         this.savingRecordTip = savingRecordTip;
     }
 
-    public int getSavingTypeMoneyCard() {
-        return savingTypeMoneyCard;
+    public long getRecordSavingDate() {
+        return recordSavingDate;
     }
 
-    public void setSavingTypeMoneyCard(int savingTypeMoneyCard) {
-        this.savingTypeMoneyCard = savingTypeMoneyCard;
+    public void setRecordSavingDate(long recordSavingDate) {
+        this.recordSavingDate = recordSavingDate;
     }
 
-    public String getCardImg() {
-        return cardImg;
+    public float getRecordSavingMoneyNumber() {
+        return recordSavingMoneyNumber;
     }
 
-    public void setCardImg(String cardImg) {
-        this.cardImg = cardImg;
+    public void setRecordSavingMoneyNumber(float recordSavingMoneyNumber) {
+        this.recordSavingMoneyNumber = recordSavingMoneyNumber;
     }
 
-    public long getSavingDate() {
-        return savingDate;
+    public long getRecordSavingTo() {
+        return recordSavingTo;
     }
 
-    public void setSavingDate(long savingDate) {
-        this.savingDate = savingDate;
+    public void setRecordSavingTo(long recordSavingTo) {
+        this.recordSavingTo = recordSavingTo;
     }
 
-    public float getSavingMoneyNumber() {
-        return savingMoneyNumber;
+    public long getRecordSavingFrom() {
+        return recordSavingFrom;
     }
 
-    public void setSavingMoneyNumber(float savingMoneyNumber) {
-        this.savingMoneyNumber = savingMoneyNumber;
+    public void setRecordSavingFrom(long recordSavingFrom) {
+        this.recordSavingFrom = recordSavingFrom;
     }
 }
