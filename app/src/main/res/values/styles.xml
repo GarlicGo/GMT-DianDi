@@ -16,5 +16,27 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--文字样式-->
+    <style name="Text">
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="Text.Brown">
+        <item name="android:textColor">#6A4A57</item>
+    </style>
+
+    <!--水平装饰线-->
+    <style name="horizontal_decoration_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">#999999</item>
+    </style>
+    <!--竖直装饰线-->
+    <style name="vertical_decoration_style">
+        <item name="android:layout_width">1px</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">#999999</item>
+    </style>
 
 </resources>

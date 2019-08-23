@@ -14,7 +14,21 @@
         app:layout_constraintBottom_toTopOf="@id/bnv"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/float_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="50dp"
+            android:layout_marginRight="40dp"
+            android:src="@drawable/add"
+            app:elevation="8dp"
+            app:backgroundTint="@color/textWhite"
+            />
+
         ></FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
@@ -28,6 +42,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/navigation" />
+
 
 
 

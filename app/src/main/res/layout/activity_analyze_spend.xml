@@ -7,13 +7,50 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".activity.AnalyzeSpend">
+    tools:context=".fragments.fragment3.charts.AnalyzeSpend">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <lecho.lib.hellocharts.view.LineChartView
+    android:id="@+id/line_chart"
+    android:layout_width="fill_parent"
+    android:layout_height="400dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:padding="30dp"
-        android:text="图表分析页面，具体功能有待完善"/>
+        android:paddingTop="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="总支出：1662"/>
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="平均值：25"/>
+
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+
+
 
 </LinearLayout>

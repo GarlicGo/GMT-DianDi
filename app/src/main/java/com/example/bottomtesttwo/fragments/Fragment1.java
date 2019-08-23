@@ -9,6 +9,9 @@ import android.widget.Button;
 
 import com.example.bottomtesttwo.activity.MainActivity;
 import com.example.bottomtesttwo.R;
+import com.example.bottomtesttwo.db.Record_Saving;
+
+import org.litepal.crud.DataSupport;
 
 //卡包页
 public class Fragment1 extends Fragment {
@@ -46,8 +49,11 @@ public class Fragment1 extends Fragment {
         but.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity activity = (MainActivity)getActivity();
-                activity.replaceFragment(new Fragment5());
+//                MainActivity activity = (MainActivity)getActivity();
+//                activity.replaceFragment(new Fragment5());
+                Record_Saving record_saving = DataSupport.find(Record_Saving.class,1);
+                if(record_saving == null)
+                    but.setText("null");
             }
         });
     }

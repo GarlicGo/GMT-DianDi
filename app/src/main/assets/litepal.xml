@@ -1,7 +1,7 @@
 <litepal>
-    <dbname value="GMT_App_DianDi"/>
+    <dbname value="GMT_First"/>
 
-    <version value="1"/>
+    <version value="3"/>
 
     <list>
         <mapping class="com.example.bottomtesttwo.db.Information_Account"/>

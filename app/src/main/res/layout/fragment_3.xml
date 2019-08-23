@@ -10,9 +10,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="90dp"
+        android:layout_height="75dp"
         android:background="@color/background_gray"
-        android:gravity="center_vertical">
+        android:gravity="bottom">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,8 +31,8 @@
 
                 <ImageView
                     android:id="@+id/analyze_spend_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:src="@mipmap/analyze_spend"/>
                 <TextView
                     android:id="@+id/analyze_spend_text"
@@ -52,8 +52,8 @@
 
                 <ImageView
                     android:id="@+id/analyze_income_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:src="@mipmap/analyze_income"/>
                 <TextView
                     android:id="@+id/analyze_income_text"
@@ -73,8 +73,8 @@
 
                 <ImageView
                     android:id="@+id/analyze_sum_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:src="@mipmap/analyze_summary"/>
                 <TextView
                     android:id="@+id/analyze_sum_text"
@@ -90,10 +90,30 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/test_button1"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="创建数据库"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment3_recycle_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+        <!--<Button-->
+            <!--android:id="@+id/test_button1"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="创建数据库"/>-->
+
+
+    </LinearLayout>
+
+
+
+
+
 
 </LinearLayout>

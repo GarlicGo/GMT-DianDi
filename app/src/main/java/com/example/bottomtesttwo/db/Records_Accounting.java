@@ -8,7 +8,7 @@ public class Records_Accounting extends DataSupport {
     private long id;//
     private long recordFirstType;//大类别（支出/收入/转账；默认为支出）
     private long recordSecondType;//小类别（快递/餐饮/...）
-    private String recordSecondTypeImage;//小类别对应图片
+    private int recordSecondTypeImage;//小类别对应图片
     private long recordAccountingDate;//记账日期
     private String recordAccountintTip;//记账备注
     private float recordAccountMoneyNumber;//记账金额
@@ -38,11 +38,11 @@ public class Records_Accounting extends DataSupport {
         this.recordSecondType = recordSecondType;
     }
 
-    public String getRecordSecondTypeImage() {
+    public int getRecordSecondTypeImage() {
         return recordSecondTypeImage;
     }
 
-    public void setRecordSecondTypeImage(String recordSecondTypeImage) {
+    public void setRecordSecondTypeImage(int recordSecondTypeImage) {
         this.recordSecondTypeImage = recordSecondTypeImage;
     }
 
