@@ -19,6 +19,8 @@ import com.example.bottomtesttwo.fragments.fragment3.charts.AnalyzeSpend;
 import com.example.bottomtesttwo.fragments.fragment3.Frag3Item1;
 import com.example.bottomtesttwo.fragments.fragment3.Frag3Item1Adapter;
 import com.example.bottomtesttwo.fragments.fragment3.Frag3Item2;
+import com.example.bottomtesttwo.fragments.fragment3.charts.DateIntent;
+import com.example.bottomtesttwo.fragments.fragment3.charts.NumberIntent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -156,8 +158,18 @@ public class Fragment3 extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.analyze_income_img:
             case R.id.analyze_income_text:
+                initDate();
+                initNumber();
                 Intent intentIncome = new Intent(getActivity(), AnalyzeSpend.class);
+                intentIncome.setAction("action");
+                intentIncome.putExtra("dateIntent",dateIntent);
+                intentIncome.putExtra("1","666");
+                intentIncome.putExtra("numberIntent",numberIntent);
                 startActivity(intentIncome);
+
+
+
+
                 break;
             case R.id.analyze_spend_img:
             case R.id.analyze_spend_text:
@@ -174,6 +186,25 @@ public class Fragment3 extends Fragment implements View.OnClickListener {
                     break;
 
         }
+    }
+
+    NumberIntent numberIntent = new NumberIntent();
+    DateIntent dateIntent = new DateIntent();
+
+    public void initDate(){
+        dateIntent.add("6");
+        dateIntent.add("7");
+        dateIntent.add("8");
+        dateIntent.add("9");
+        dateIntent.add("10");
+    }
+
+    public void initNumber(){
+        numberIntent.add(16);
+        numberIntent.add(17);
+        numberIntent.add(18);
+        numberIntent.add(19);
+        numberIntent.add(20);
     }
 
     private void initFrag3Item1() {
@@ -221,7 +252,7 @@ public class Fragment3 extends Fragment implements View.OnClickListener {
 
             }
 //
-            Toast.makeText(getActivity(),"false",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity(),"false",Toast.LENGTH_SHORT).show();
 
             List<Frag3Item2> item2List = new ArrayList<>();
             item2List.add(new Frag3Item2(tip,number,R.mipmap.income_lijin));

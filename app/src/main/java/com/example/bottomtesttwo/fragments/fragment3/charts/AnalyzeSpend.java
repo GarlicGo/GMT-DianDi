@@ -1,9 +1,11 @@
 package com.example.bottomtesttwo.fragments.fragment3.charts;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.bottomtesttwo.R;
 import com.example.bottomtesttwo.fragments.fragment3.Frag3Item2;
@@ -27,6 +29,8 @@ import static com.example.bottomtesttwo.activity.MainActivity.setStatusBar;
 
 public class AnalyzeSpend extends AppCompatActivity {
 
+    DateIntent dateIntent;
+    NumberIntent numberIntent;
 
     //一个是横坐标，一个是数据点数组。
     private LineChartView lineChart;
@@ -81,8 +85,27 @@ public class AnalyzeSpend extends AppCompatActivity {
         setContentView(R.layout.activity_analyze_spend);
 
         lineChart = (LineChartView) findViewById(R.id.line_chart);
-        initScore();
-        initDate();
+
+        Intent intent = getIntent();
+
+        if("action".equals(intent.getAction())){
+            dateIntent = (DateIntent)intent.getSerializableExtra("dateIntent") ;
+            numberIntent = (NumberIntent)intent.getSerializableExtra("numberIntent");
+            String temp = intent.getStringExtra("1");
+            Toast.makeText(AnalyzeSpend.this,"1111",Toast.LENGTH_SHORT).show();
+        }
+
+
+//        for(String item:dateIntent.getStringListIntent()){
+//            Toast.makeText(AnalyzeSpend.this,"dateIntent",Toast.LENGTH_SHORT).show();
+//            break;
+//        }
+//
+//        date = dateIntent.getStringListIntent();
+//        score = numberIntent.getIntListIntent();
+
+//        initScore();
+//        initDate();
         getAxisXLables();//获取x轴的标注
         getAxisPoints();//获取坐标点
         initLineChart();//初始化

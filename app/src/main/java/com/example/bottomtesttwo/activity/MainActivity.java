@@ -3,6 +3,7 @@ package com.example.bottomtesttwo.activity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
@@ -12,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -24,6 +26,8 @@ import com.example.bottomtesttwo.fragments.Fragment4;
 import com.example.bottomtesttwo.fragments.fragment3.Calculator;
 import com.example.bottomtesttwo.fragments.fragment3.Frag3Item1;
 import com.example.bottomtesttwo.fragments.fragment3.Frag3Item2;
+import com.example.bottomtesttwo.serverd.DBOperator;
+import com.example.bottomtesttwo.serverd.DBSyncer;
 import com.example.bottomtesttwo.util.StatusBar.StatusBarUtil;
 
 import org.litepal.LitePal;
@@ -61,10 +65,43 @@ public class MainActivity extends AppCompatActivity {
         addBottom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(MainActivity.this, Calculator.class);
-                startActivityForResult(intent,3);
+                if(mMenuItem == null){
+                    Intent intent =new Intent(MainActivity.this, Calculator.class);
+                    startActivityForResult(intent,3);
+                }else {
+                    switch (mMenuItem.getItemId()){
+                        case R.id.item_tab1:
+                            break;
+                        case R.id.item_tab2:
+                            break;
+                        case R.id.item_tab3:
+                            Intent intent =new Intent(MainActivity.this, Calculator.class);
+                            startActivityForResult(intent,3);
+                            break;
+                    }
+                }
             }
         });
+
+//
+        DBSyncer dbSyncer = DBSyncer.getSyncer();
+        dbSyncer.start(10000001);
+
+//        DBOperator dbOperator = DBOperator.getOperator();
+//        Cursor cursor = dbOperator.Query("select * from user_info");
+//
+//        cursor.moveToFirst();
+//        Toast.makeText(MainActivity.this,"hhhhh:"+cursor.getString(cursor.getColumnIndex("id")),Toast.LENGTH_SHORT).show();
+
+        DBOperator dbOperator = DBOperator.getOperator();
+//        dbOperator.Cud(10000001, "insert into account_records (title) values ('66666')");
+        dbOperator.Cud(10000001,"update user_info set username='Morilence' where id='10000001'");
+        Cursor cursor = dbOperator.Query("select * from user_info");
+
+        cursor.moveToFirst();
+        Toast.makeText(MainActivity.this,"hhhhh:"+cursor.getString(cursor.getColumnIndex("username")),Toast.LENGTH_SHORT).show();
+
+
 
         //底部菜单栏点击监听事件
         mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -151,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
 ////                    Toast.makeText(MainActivity.this,"功能测试，后续开放",Toast.LENGTH_SHORT).show();
 //                    int imgId = Integer.parseInt(secondType);
 //                    Toast.makeText(MainActivity.this,"$"+moneyNumber,Toast.LENGTH_SHORT).show();
-                    addItem(accountingDate,tip,moneyNumber,secondType);
+//                    addItem(accountingDate,tip,moneyNumber,secondType);
 
                 }
                 break;

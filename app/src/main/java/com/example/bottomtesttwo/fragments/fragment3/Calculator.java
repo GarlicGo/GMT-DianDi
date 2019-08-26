@@ -6,35 +6,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.InputType;
 
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v4.view.ViewPager;
 
 import com.example.bottomtesttwo.R;
-import com.example.bottomtesttwo.util.DateUtils;
 
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-
-import static com.example.bottomtesttwo.activity.MainActivity.setStatusBar;
-import static com.example.bottomtesttwo.util.DateUtils.FORMAT_D;
-import static com.example.bottomtesttwo.util.DateUtils.FORMAT_M;
-import static com.example.bottomtesttwo.util.DateUtils.FORMAT_Y;
-import static com.example.bottomtesttwo.util.DateUtils.FORMAT_YMD;
 
 public class Calculator extends AppCompatActivity implements OnClickListener, DatePickerDialog.OnDateSetListener {
 
@@ -391,6 +376,20 @@ public class Calculator extends AppCompatActivity implements OnClickListener, Da
         intent.putExtra("moneyNumber",moneyNumber);
         intent.putExtra("accountingDate",accountingDate);
         intent.putExtra("tip",tip);
+
+//         数据查询：直接发送sql语句到服务端解析并返回查询结果
+//         第一步: 获取单例
+//        DataQuery dataQuerier = DataQuery.getQuerier();
+//
+//        // 对于增删改三种操作返回布尔类型，获取返回值时需要强转
+//        Boolean a = (Boolean) dataQuerier.execQuery("insert into amount_changes (changeAmount) Values ('1')");
+//        dataQuerier.execQuery("insert into amount_changes (icon) Values ('1')");
+//        dataQuerier.execQuery("insert into amount_changes (changeType) Values ('1')");
+//        dataQuerier.execQuery("insert into amount_changes (sourceType) Values ('1')");
+//        dataQuerier.execQuery("insert into amount_changes (remarks) Values ('1')");
+//        Log.d("ZXY","insert 1 : " + a);
+        
+
         setResult(RESULT_OK,intent);
         finish();
     }
