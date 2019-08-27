@@ -16,20 +16,18 @@ import okhttp3.Response;
 public class DBOperator {
 
     private static DBOperator instance = new DBOperator();
-    private DBOperator (){}
+    private DBOperator(){}
     public static DBOperator getOperator() {
         return instance;
     }
 
-    //增删改
-    public void Cud(int UserID, String sql) {
+    public void Cud(String sql) {
         SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase("/data/data/com.example.bottomtesttwo/databases/gmt_dads.db", null);
         db.execSQL(sql);
-        UploadSQLTask uploadSQLTask = new UploadSQLTask(UserID, sql);
+        UploadSQLTask uploadSQLTask = new UploadSQLTask(sql);
         uploadSQLTask.execute();
     }
 
-    //查询，返回一个Cursor指针
     public Cursor Query(String sql) {
         SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase("/data/data/com.example.bottomtesttwo/databases/gmt_dads.db", null);
         return db.rawQuery(sql, null);
@@ -37,11 +35,9 @@ public class DBOperator {
 
     private class UploadSQLTask extends AsyncTask<Void, Integer, Boolean> {
 
-        private int UserID;
         private String sql;
 
-        public UploadSQLTask(int UserID, String sql) {
-            this.UserID = UserID;
+        public UploadSQLTask(String sql) {
             this.sql = sql;
         }
 
@@ -73,8 +69,6 @@ public class DBOperator {
         @Override
         protected void onPostExecute(Boolean aBoolean) {
             if (aBoolean == true) {
-                DBSyncer dbSyncer = DBSyncer.getSyncer();
-                dbSyncer.start(UserID);
                 if (sql.toLowerCase().contains("insert")) {
                     Log.d("MYX", "DBOperator: insert success");
                 } else if (sql.toLowerCase().contains("delete")) {

@@ -32,15 +32,23 @@ import com.example.bottomtesttwo.util.StatusBar.StatusBarUtil;
 
 import org.litepal.LitePal;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView mBottomNavigationView;//用于接收底部菜单栏实体
     private MenuItem mMenuItem;//用于获取菜单栏当前处于哪一个位置
-    private Fragment1 fragment1 = new Fragment1();
-    private Fragment2 fragment2 = new Fragment2();
-    private Fragment3 fragment3 = new Fragment3();
-    private Fragment4 fragment4 = new Fragment4();
+    private Fragment1 fragment1;
+    private Fragment2 fragment2;
+    private Fragment3 fragment3;
+    private Fragment4 fragment4;
+//    private Fragment1 fragment1 = new Fragment1();
+//    private Fragment2 fragment2 = new Fragment2();
+//    private Fragment3 fragment3 = new Fragment3();
+//    private Fragment4 fragment4 = new Fragment4();
+//    List<Fragment> fragments = new
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
 
         //底部菜单栏实体
         mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bnv);
+        fragment1 = new Fragment1();
+        fragment2 = new Fragment2();
+        fragment3 = new Fragment3();
+        fragment4 = new Fragment4();
+
         //悬浮添加按钮
         final FloatingActionButton addBottom = (FloatingActionButton)findViewById(R.id.float_add);
 
@@ -66,8 +79,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(mMenuItem == null){
-                    Intent intent =new Intent(MainActivity.this, Calculator.class);
-                    startActivityForResult(intent,3);
+
                 }else {
                     switch (mMenuItem.getItemId()){
                         case R.id.item_tab1:
@@ -84,23 +96,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
 //
-        DBSyncer dbSyncer = DBSyncer.getSyncer();
-        dbSyncer.start(10000001);
-
+//        DBSyncer dbSyncer = DBSyncer.getSyncer();
+//        dbSyncer.start(10000001);
 //        DBOperator dbOperator = DBOperator.getOperator();
 //        Cursor cursor = dbOperator.Query("select * from user_info");
-//
 //        cursor.moveToFirst();
 //        Toast.makeText(MainActivity.this,"hhhhh:"+cursor.getString(cursor.getColumnIndex("id")),Toast.LENGTH_SHORT).show();
-
-        DBOperator dbOperator = DBOperator.getOperator();
+//        DBOperator dbOperator = DBOperator.getOperator();
 //        dbOperator.Cud(10000001, "insert into account_records (title) values ('66666')");
-        dbOperator.Cud(10000001,"update user_info set username='Morilence' where id='10000001'");
-        Cursor cursor = dbOperator.Query("select * from user_info");
-
-        cursor.moveToFirst();
-        Toast.makeText(MainActivity.this,"hhhhh:"+cursor.getString(cursor.getColumnIndex("username")),Toast.LENGTH_SHORT).show();
-
+//        dbOperator.Cud(10000001,"update user_info set username='Morilence' where id='10000001'");
+//        Cursor cursor = dbOperator.Query("select * from user_info");
+//        cursor.moveToFirst();
+//        Toast.makeText(MainActivity.this,"hhhhh:"+cursor.getString(cursor.getColumnIndex("username")),Toast.LENGTH_SHORT).show();
 
 
         //底部菜单栏点击监听事件
@@ -119,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.item_tab2://底部导航栏存钱点击事件相应
                         replaceFragment(fragment2);
-                        setStatusBar(MainActivity.this,false, true);
+                        setStatusBar(MainActivity.this,false, false);
                         addBottom.setVisibility(View.VISIBLE);
                         return true;
 
@@ -181,15 +188,11 @@ public class MainActivity extends AppCompatActivity {
                 if(resultCode == RESULT_OK){
                     int firstType = data.getIntExtra("firstType",0);//选择支出/收入，1为支出，2为收入
                     int secondType = data.getIntExtra("secondType",0);//选择小类别
-//                    String moneyCard = (int) data.getShortExtra("moneyCard");//支付卡包类别
+                    //String moneyCard = (int) data.getShortExtra("moneyCard");//支付卡包类别
                     double moneyNumber = data.getDoubleExtra("moneyNumber",0.00);//记录用户存入钱数
                     String tip = data.getStringExtra("tip");
                     String accountingDate = data.getStringExtra("accountingDate");//记录日期（2019年8月22日）
-////                    Toast.makeText(MainActivity.this,"功能测试，后续开放",Toast.LENGTH_SHORT).show();
-//                    int imgId = Integer.parseInt(secondType);
-//                    Toast.makeText(MainActivity.this,"$"+moneyNumber,Toast.LENGTH_SHORT).show();
-//                    addItem(accountingDate,tip,moneyNumber,secondType);
-
+                    addItem(tip,secondType,moneyNumber,accountingDate.substring(5,accountingDate.length()));
                 }
                 break;
         }
@@ -198,23 +201,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean isAddNew = true;
 //    Fragment3 fragment3Control = (Fragment3)getSupportFragmentManager().findFragmentById(R.id.float_add);
-
-    public void addItem(String date,String tip,double number,int imageId){
-
-//        fragment3.addFrag3Item1("111","111",10,R.mipmap.income_lijin);
-        fragment3.addFrag3Item1(date,tip,number,imageId);
-
-//        fragment3.recyclerView.setAdapter(fragment3.);
-//        for(Frag3Item1 item1:fragment3.getFrag3Item1List()){
-//            if (item1.getDate() == date){
-//                isAddNew = false;
-//                item1.addItem2(tip,number,imageId);
-//            }
-//        }
-//
-//        if(isAddNew){
-//            fragment3.addFrag3Item1(date,tip,number,imageId);
-//
-//        }
+    public void addItem(String tip,int imageId,double number,String date){
+        fragment3.addFrag3Item(tip,imageId,number,date);
     }
 }

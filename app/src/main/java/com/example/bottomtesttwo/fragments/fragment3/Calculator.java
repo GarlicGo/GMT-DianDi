@@ -376,21 +376,8 @@ public class Calculator extends AppCompatActivity implements OnClickListener, Da
         intent.putExtra("moneyNumber",moneyNumber);
         intent.putExtra("accountingDate",accountingDate);
         intent.putExtra("tip",tip);
-
-//         数据查询：直接发送sql语句到服务端解析并返回查询结果
-//         第一步: 获取单例
-//        DataQuery dataQuerier = DataQuery.getQuerier();
-//
-//        // 对于增删改三种操作返回布尔类型，获取返回值时需要强转
-//        Boolean a = (Boolean) dataQuerier.execQuery("insert into amount_changes (changeAmount) Values ('1')");
-//        dataQuerier.execQuery("insert into amount_changes (icon) Values ('1')");
-//        dataQuerier.execQuery("insert into amount_changes (changeType) Values ('1')");
-//        dataQuerier.execQuery("insert into amount_changes (sourceType) Values ('1')");
-//        dataQuerier.execQuery("insert into amount_changes (remarks) Values ('1')");
-//        Log.d("ZXY","insert 1 : " + a);
-        
-
         setResult(RESULT_OK,intent);
+
         finish();
     }
 
