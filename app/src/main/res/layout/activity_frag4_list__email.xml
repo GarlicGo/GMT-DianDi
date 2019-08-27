@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".fragments.fragment4.Frag4List_Email">
 
     <LinearLayout
@@ -31,6 +32,116 @@
             style="@style/Text.Brown"
             android:textSize="18sp"
             android:text="邮箱绑定"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="你已绑定邮箱"/>
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            style="@style/Text.Brown"
+            android:textColor="#000000"
+            android:text="582166@163.com"/>
+
+        <Button
+            android:id="@+id/frag4_list_phone_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            style="@style/Button.Default"
+            android:text="更换"/>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_marginTop="30dp"
+        android:id="@+id/frag4_list_phone_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:background="@drawable/round_corner_bg">
+
+        <EditText
+            android:id="@+id/frag4_list_phone_edit1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:minHeight="45dp"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:hint="输入新手机号码"
+            android:singleLine="true"
+            android:textSize="16sp"
+            android:background="@drawable/selector_edittext_bg"/>
+
+        <EditText
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:minHeight="45dp"
+            android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:hint="Password"
+            android:singleLine="true"
+            android:textSize="16sp"
+            android:background="@drawable/selector_edittext_bg"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#f3f3f3"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#f7f7f7"
+            android:gravity="center">
+
+
+
+            <Button
+                android:id="@+id/login_btn_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:padding="8dp"
+                android:gravity="center"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="Login"
+                style="@style/Button.Default"/>
+
+
+        </RelativeLayout>
 
     </LinearLayout>
 </LinearLayout>

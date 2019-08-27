@@ -118,7 +118,7 @@ public class Fragment4 extends Fragment {
 
     private void initDate(){
         frag4ItemList.add(new Frag4Item("个人信息"));
-        frag4ItemList.add(new Frag4Item("密码密保"));
+        frag4ItemList.add(new Frag4Item("修改密码"));
         frag4ItemList.add(new Frag4Item("手机绑定"));
         frag4ItemList.add(new Frag4Item("邮箱绑定"));
         frag4ItemList.add(new Frag4Item("关于软件"));

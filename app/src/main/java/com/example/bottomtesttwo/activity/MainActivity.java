@@ -26,6 +26,7 @@ import com.example.bottomtesttwo.fragments.Fragment4;
 import com.example.bottomtesttwo.fragments.fragment3.Calculator;
 import com.example.bottomtesttwo.fragments.fragment3.Frag3Item1;
 import com.example.bottomtesttwo.fragments.fragment3.Frag3Item2;
+import com.example.bottomtesttwo.fragments.login.LoginActivity;
 import com.example.bottomtesttwo.serverd.DBOperator;
 import com.example.bottomtesttwo.serverd.DBSyncer;
 import com.example.bottomtesttwo.util.StatusBar.StatusBarUtil;
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     private Fragment2 fragment2;
     private Fragment3 fragment3;
     private Fragment4 fragment4;
+
+    private boolean loginOlineState = false;
 //    private Fragment1 fragment1 = new Fragment1();
 //    private Fragment2 fragment2 = new Fragment2();
 //    private Fragment3 fragment3 = new Fragment3();
@@ -64,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         replaceFragment(new Fragment1());//默认加载fragment1页面
+
+//        login();
 
         //底部菜单栏实体
         mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bnv);
@@ -203,5 +208,12 @@ public class MainActivity extends AppCompatActivity {
 //    Fragment3 fragment3Control = (Fragment3)getSupportFragmentManager().findFragmentById(R.id.float_add);
     public void addItem(String tip,int imageId,double number,String date){
         fragment3.addFrag3Item(tip,imageId,number,date);
+    }
+
+    private void login(){
+        if(loginOlineState == false){
+            Intent loginIntent = new Intent(this, LoginActivity.class);
+            startActivity(loginIntent);
+        }
     }
 }

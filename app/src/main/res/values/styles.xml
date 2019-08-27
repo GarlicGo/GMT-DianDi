@@ -39,4 +39,16 @@
         <item name="android:background">#999999</item>
     </style>
 
+    <!--按钮样式-->
+    <style name="Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="Button.Default">
+        <item name="android:textColor">@color/textWhite</item>
+        <item name="android:background">@drawable/bg_button_default</item>
+        <!--<item name="com.github.airsaid.accountbook:backgroundTint">?attr/colorAccent</item>-->
+    </style>
+
 </resources>
