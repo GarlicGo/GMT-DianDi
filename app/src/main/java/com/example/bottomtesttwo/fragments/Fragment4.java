@@ -1,17 +1,25 @@
 package com.example.bottomtesttwo.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.bottomtesttwo.R;
 import com.example.bottomtesttwo.fragments.fragment4.Frag4Adapter;
 import com.example.bottomtesttwo.fragments.fragment4.Frag4Item;
+import com.example.bottomtesttwo.fragments.fragment4.Frag4List_Email;
+import com.example.bottomtesttwo.fragments.fragment4.Frag4List_Personal;
+import com.example.bottomtesttwo.fragments.fragment4.Frag4List_Phone;
+import com.example.bottomtesttwo.fragments.fragment4.Frag4List_Question;
+import com.example.bottomtesttwo.fragments.fragment4.Frag4List_Software;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,11 +76,49 @@ public class Fragment4 extends Fragment {
         frag4Adapter = new Frag4Adapter(getActivity(),frag4ItemList);
         recyclerView.setAdapter(frag4Adapter);
 
+        //添加点击事件
+        recyclerView.post(new Runnable() {
+            @Override
+            public void run() {
+                frag4Adapter.setOnclick(new Frag4Adapter.ClickInterface() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        //Log.d("ZXY",position+"");
+                        switch (position){
+                            case 0:
+                                Intent intent0 = new Intent(getActivity(), Frag4List_Personal.class);
+                                startActivity(intent0);
+                                break;
+                            case 1:
+                                Intent intent1 = new Intent(getActivity(), Frag4List_Question.class);
+                                startActivity(intent1);
+                                break;
+                            case 2:
+                                Intent intent2 = new Intent(getActivity(), Frag4List_Phone.class);
+                                startActivity(intent2);
+                                break;
+                            case 3:
+                                Intent intent3 = new Intent(getActivity(), Frag4List_Email.class);
+                                startActivity(intent3);
+                                break;
+                            case 4:
+                                Intent intent4 = new Intent(getActivity(),Frag4List_Software.class);
+                                startActivity(intent4);
+                                break;
+                                default:
+                                    break;
+                        }
+                    }
+                });
+            }
+        });
     }
+
+
 
     private void initDate(){
         frag4ItemList.add(new Frag4Item("个人信息"));
-        frag4ItemList.add(new Frag4Item("密保问题"));
+        frag4ItemList.add(new Frag4Item("密码密保"));
         frag4ItemList.add(new Frag4Item("手机绑定"));
         frag4ItemList.add(new Frag4Item("邮箱绑定"));
         frag4ItemList.add(new Frag4Item("关于软件"));

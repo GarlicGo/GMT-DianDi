@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        LitePal.getDatabase();
+        //LitePal.getDatabase();
         //去掉顶部标题(状态栏下面带有顶部返回按钮的那个)
         getSupportActionBar().hide();
         //顶部状态栏设置属性（具体细节见MainActivity中的静态实现方法）

@@ -19,7 +19,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".fragments.login.Main2Activity"></activity>
+        <activity android:name=".fragments.fragment4.Frag4List_Email"
+            android:launchMode="singleTask"></activity>
+        <activity android:name=".fragments.fragment4.Frag4List_Phone"
+            android:launchMode="singleTask"/>
+        <activity android:name=".fragments.fragment4.Frag4List_Question"
+            android:launchMode="singleTask"/>
+        <activity android:name=".fragments.fragment4.Frag4List_Personal"
+            android:launchMode="singleTask"/>
+        <activity
+            android:name=".fragments.fragment4.Frag4List_Software"
+            android:launchMode="singleTask" />
+        <activity android:name=".fragments.login.Main2Activity" />
         <activity
             android:name=".fragments.fragment3.Calculator"
             android:launchMode="singleTask" />
