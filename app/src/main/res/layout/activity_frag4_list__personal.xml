@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".fragments.fragment4.Frag4List_Personal">
 
     <LinearLayout
@@ -34,4 +35,140 @@
 
     </LinearLayout>
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/personal_recycle_view"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:id="@+id/personal_ll_1"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <Button
+            android:id="@+id/login_personal_button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:padding="8dp"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="确认"
+            style="@style/Button.Default"/>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_marginTop="30dp"
+        android:id="@+id/personal_ll_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:background="@drawable/round_corner_bg">
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textBlack"
+            android:text="用户名" />
+        <EditText
+            android:id="@+id/personal_edit_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textWebEmailAddress"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+
+            android:minHeight="45dp"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:hint="放开那只大蒜"
+            android:singleLine="true"
+            android:textSize="16sp"
+            android:background="@drawable/selector_edittext_bg"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textBlack"
+            android:text="生日" />
+        <EditText
+            android:id="@+id/personal_edit_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:minHeight="45dp"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:hint="2019年8月"
+            android:singleLine="true"
+            android:textSize="16sp"
+            android:background="@drawable/selector_edittext_bg"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textBlack"
+            android:text="个性签名" />
+        <EditText
+            android:id="@+id/personal_edit_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:minHeight="45dp"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:hint="确认新密码"
+            android:singleLine="true"
+            android:textSize="16sp"
+            android:background="@drawable/selector_edittext_bg"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#f3f3f3"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#f7f7f7">
+
+
+
+            <Button
+                android:id="@+id/login_personal_button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:padding="8dp"
+                android:gravity="center"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="确认"
+                style="@style/Button.Default"/>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
 </LinearLayout>

@@ -6,11 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.bottomtesttwo.R;
 import com.example.bottomtesttwo.fragments.fragment4.Frag4Adapter;
@@ -18,7 +16,7 @@ import com.example.bottomtesttwo.fragments.fragment4.Frag4Item;
 import com.example.bottomtesttwo.fragments.fragment4.Frag4List_Email;
 import com.example.bottomtesttwo.fragments.fragment4.Frag4List_Personal;
 import com.example.bottomtesttwo.fragments.fragment4.Frag4List_Phone;
-import com.example.bottomtesttwo.fragments.fragment4.Frag4List_Question;
+import com.example.bottomtesttwo.fragments.fragment4.Frag4List_Secret;
 import com.example.bottomtesttwo.fragments.fragment4.Frag4List_Software;
 
 import java.util.ArrayList;
@@ -90,7 +88,7 @@ public class Fragment4 extends Fragment {
                                 startActivity(intent0);
                                 break;
                             case 1:
-                                Intent intent1 = new Intent(getActivity(), Frag4List_Question.class);
+                                Intent intent1 = new Intent(getActivity(), Frag4List_Secret.class);
                                 startActivity(intent1);
                                 break;
                             case 2:

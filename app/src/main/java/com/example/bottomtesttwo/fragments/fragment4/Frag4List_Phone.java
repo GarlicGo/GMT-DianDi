@@ -30,9 +30,8 @@ public class Frag4List_Phone extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frag4_list__phone);
         getSupportActionBar().hide();
-        ImageView imageView = (ImageView)findViewById(R.id.frag4_list_phone_back);
+        imageView = (ImageView)findViewById(R.id.frag4_list_phone_back);
 
-        imageView = (ImageView)findViewById(R.id.frag4_list_question_back);
         button = (Button)findViewById(R.id.frag4_list_phone_btn);
         editText = (EditText)findViewById(R.id.frag4_list_phone_edit1);
         layout = (LinearLayout)findViewById(R.id.frag4_list_phone_ll);
@@ -42,7 +41,7 @@ public class Frag4List_Phone extends AppCompatActivity implements View.OnClickLi
 
         button2.setOnClickListener(this);
         button.setOnClickListener(this);
-
+        imageView.setOnClickListener(this);
         charge();
 
     }

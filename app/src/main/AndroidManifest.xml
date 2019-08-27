@@ -27,7 +27,7 @@
             android:name=".fragments.fragment4.Frag4List_Phone"
             android:launchMode="singleTask" />
         <activity
-            android:name=".fragments.fragment4.Frag4List_Question"
+            android:name=".fragments.fragment4.Frag4List_Secret"
             android:launchMode="singleTask" />
         <activity
             android:name=".fragments.fragment4.Frag4List_Personal"
