@@ -9,6 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 
 import okhttp3.FormBody;
@@ -45,6 +46,7 @@ public class DBSyncer {
                     .add("dbName", "gmt_dads")
                     .add("UserID", String.valueOf(UserID))
                     .build();
+
             Request request = new Request.Builder()
                     .url("http://114.55.252.35/syncData.php")
                     .post(requestBody)
@@ -53,6 +55,7 @@ public class DBSyncer {
             try {
                 response = client.newCall(request).execute();
                 String queryResult = response.body().string();
+                Log.d("MYX", queryResult);
                 response.close();
                 parseData(queryResult);
                 return true;
@@ -73,9 +76,21 @@ public class DBSyncer {
 
         private boolean parseData(String queryResult) {
             try {
-                SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase("/data/data/com.example.bottomtesttwo/databases/gmt_dads.db", null);
+                File file = new File("data/data/com.example.bottomtesttwo/databases");
+                SQLiteDatabase db;
+                if (file.exists()) {
+                    db = SQLiteDatabase.openOrCreateDatabase(file.getPath()+"/gmt_dads.db", null);
+                } else {
+                    file.mkdirs();
+                    db = SQLiteDatabase.openOrCreateDatabase(file.getPath()+"/gmt_dads.db", null);
+                }
                 JSONObject jsonObject = new JSONObject(queryResult);
-                JSONObject User_Info = jsonObject.getJSONObject("User_Info".toLowerCase());
+                JSONObject User_Info;
+                if (jsonObject.getString("User_Info".toLowerCase()).equals("null")) {
+                    User_Info = null;
+                } else {
+                    User_Info = jsonObject.getJSONObject("User_Info".toLowerCase());
+                }
                 syncUserInfo(db, User_Info);
                 JSONArray Account_Records = jsonObject.getJSONArray("Account_Records".toLowerCase());
                 syncAccountRecords(db, Account_Records);
@@ -110,21 +125,23 @@ public class DBSyncer {
                     "SSIAnswer text," +
                     "SSIHint text)");
             try {
-                ContentValues values = new ContentValues();
-                values.put("id", User_Info.getInt("id"));
-                values.put("avatar", User_Info.getString("avatar").getBytes());
-                values.put("username", User_Info.getString("username"));
-                values.put("password", User_Info.getString("password"));
-                values.put("gender", User_Info.getString("gender"));
-                values.put("personalSignature", User_Info.getString("personalSignature"));
-                values.put("birthday", User_Info.getString("birthday"));
-                values.put("phoneNumber", User_Info.getString("phoneNumber"));
-                values.put("email", User_Info.getString("email"));
-                values.put("SSI", User_Info.getString("SSI"));
-                values.put("SSIAnswer", User_Info.getString("SSIAnswer"));
-                values.put("SSIHint", User_Info.getString("SSIHint"));
-                db.insert("user_info", null, values);
-                return true;
+                if (User_Info != null) {
+                    ContentValues values = new ContentValues();
+                    values.put("id", User_Info.getInt("id"));
+                    values.put("avatar", User_Info.getString("avatar").getBytes());
+                    values.put("username", User_Info.getString("username"));
+                    values.put("password", User_Info.getString("password"));
+                    values.put("gender", User_Info.getString("gender"));
+                    values.put("personalSignature", User_Info.getString("personalSignature"));
+                    values.put("birthday", User_Info.getString("birthday"));
+                    values.put("phoneNumber", User_Info.getString("phoneNumber"));
+                    values.put("email", User_Info.getString("email"));
+                    values.put("SSI", User_Info.getString("SSI"));
+                    values.put("SSIAnswer", User_Info.getString("SSIAnswer"));
+                    values.put("SSIHint", User_Info.getString("SSIHint"));
+                    db.insert("user_info", null, values);
+                    return true;
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }

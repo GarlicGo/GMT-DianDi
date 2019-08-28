@@ -101,7 +101,7 @@ public class Calculator extends AppCompatActivity implements OnClickListener, Da
         calculatorIncomeAdapter.onClickListener(new CalculatorAdapter.onItemClick() {
             @Override
             public void onClick(View v,int i) {
-//                Toast.makeText(Calculator.this,"点击了"+secondType,Toast.LENGTH_SHORT).show();
+//                Toast.makeText(Calculator2.this,"点击了"+secondType,Toast.LENGTH_SHORT).show();
                 CalculatorSortItem calculatorSortItem = calculatorIncomeSortItemList.get(i);
                 secondType = calculatorSortItem.getImageId();
                 editText.setHint(calculatorSortItem.getName());
@@ -114,7 +114,7 @@ public class Calculator extends AppCompatActivity implements OnClickListener, Da
         calculatorSpendAdapter.onClickListener(new CalculatorAdapter.onItemClick() {
             @Override
             public void onClick(View v,int i) {
-//                Toast.makeText(Calculator.this,"点击了"+secondType,Toast.LENGTH_SHORT).show();
+//                Toast.makeText(Calculator2.this,"点击了"+secondType,Toast.LENGTH_SHORT).show();
                 CalculatorSortItem calculatorSortItem = calculatorSpendSortItemList.get(i);
                 secondType = calculatorSortItem.getImageId();
                 editText.setHint(calculatorSortItem.getName());
@@ -174,7 +174,7 @@ public class Calculator extends AppCompatActivity implements OnClickListener, Da
 
 //    @Override
 //    public void onClick(View v, int i) {
-//        Toast.makeText(Calculator.this,"6666",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(Calculator2.this,"6666",Toast.LENGTH_SHORT).show();
 //    }
 
     @Override
@@ -351,7 +351,7 @@ public class Calculator extends AppCompatActivity implements OnClickListener, Da
             }
         }
 
-//        Toast.makeText(Calculator.this,accountingDate,Toast.LENGTH_SHORT).show();
+//        Toast.makeText(Calculator2.this,accountingDate,Toast.LENGTH_SHORT).show();
         String tempString = editText.getText().toString();
         if(tempString.equals(null)){
         }
@@ -391,13 +391,13 @@ public class Calculator extends AppCompatActivity implements OnClickListener, Da
 
 //    @Override
 //    public void onClick(int position) {
-//        Toast.makeText(Calculator.this,position+"11111",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(Calculator2.this,position+"11111",Toast.LENGTH_SHORT).show();
 //    }
 
 
 //    private void selectItem(int posotion){
 //        Log.d("CalculatorAdapter","1111111");
-//        Toast.makeText(Calculator.this,"000",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(Calculator2.this,"000",Toast.LENGTH_SHORT).show();
 //        if(firstType == 1){
 //            CalculatorSortItem calculatorOutputItem = calculatorSpendSortItemList.get(posotion);
 //            editText.setHint(calculatorOutputItem.getName());

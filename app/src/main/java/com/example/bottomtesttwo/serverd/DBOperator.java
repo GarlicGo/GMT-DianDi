@@ -5,7 +5,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -16,20 +22,34 @@ import okhttp3.Response;
 public class DBOperator {
 
     private static DBOperator instance = new DBOperator();
-    private DBOperator(){}
+    private DBOperator (){}
     public static DBOperator getOperator() {
         return instance;
     }
 
     public void Cud(String sql) {
-        SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase("/data/data/com.example.bottomtesttwo/databases/gmt_dads.db", null);
+        File file = new File("data/data/com.example.bottomtesttwo/databases");
+        SQLiteDatabase db;
+        if (file.exists()) {
+            db = SQLiteDatabase.openOrCreateDatabase(file.getPath()+"/gmt_dads.db", null);
+        } else {
+            file.mkdirs();
+            db = SQLiteDatabase.openOrCreateDatabase(file.getPath()+"/gmt_dads.db", null);
+        }
         db.execSQL(sql);
         UploadSQLTask uploadSQLTask = new UploadSQLTask(sql);
         uploadSQLTask.execute();
     }
 
     public Cursor Query(String sql) {
-        SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase("/data/data/com.example.bottomtesttwo/databases/gmt_dads.db", null);
+        File file = new File("data/data/com.example.bottomtesttwo/databases");
+        SQLiteDatabase db;
+        if (file.exists()) {
+            db = SQLiteDatabase.openOrCreateDatabase(file.getPath()+"/gmt_dads.db", null);
+        } else {
+            file.mkdirs();
+            db = SQLiteDatabase.openOrCreateDatabase(file.getPath()+"/gmt_dads.db", null);
+        }
         return db.rawQuery(sql, null);
     }
 

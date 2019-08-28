@@ -23,6 +23,7 @@ import com.example.bottomtesttwo.fragments.Fragment1;
 import com.example.bottomtesttwo.fragments.Fragment2;
 import com.example.bottomtesttwo.fragments.Fragment3;
 import com.example.bottomtesttwo.fragments.Fragment4;
+import com.example.bottomtesttwo.fragments.fragment2.Calculator2;
 import com.example.bottomtesttwo.fragments.fragment3.Calculator;
 import com.example.bottomtesttwo.fragments.fragment3.Frag3Item1;
 import com.example.bottomtesttwo.fragments.fragment3.Frag3Item2;
@@ -69,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
         replaceFragment(new Fragment1());//默认加载fragment1页面
 
 //        login();
+        DBSyncer dbSyncer = DBSyncer.getSyncer();
+        dbSyncer.start(10000001);
 
         //底部菜单栏实体
         mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bnv);
@@ -90,10 +93,12 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.item_tab1:
                             break;
                         case R.id.item_tab2:
+                            Intent intent2 = new Intent(MainActivity.this, Calculator2.class);
+                            startActivityForResult(intent2,2);
                             break;
                         case R.id.item_tab3:
-                            Intent intent =new Intent(MainActivity.this, Calculator.class);
-                            startActivityForResult(intent,3);
+                            Intent intent3 =new Intent(MainActivity.this, Calculator.class);
+                            startActivityForResult(intent3,3);
                             break;
                     }
                 }
