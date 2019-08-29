@@ -86,10 +86,8 @@
             android:id="@+id/personal_edit_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textWebEmailAddress"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-
             android:minHeight="45dp"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
@@ -104,7 +102,45 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/textBlack"
+            android:text="性别" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/personal_checkbox_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="男"
+                />
+            <CheckBox
+                android:id="@+id/personal_checkbox_2"
+                android:layout_marginLeft="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="女"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textBlack"
             android:text="生日" />
+        <!--<Button-->
+        <!--android:id="@+id/personal_btn_birth"-->
+        <!--android:layout_marginTop="6dp"-->
+        <!--android:layout_marginLeft="15dp"-->
+        <!--android:layout_marginRight="15dp"-->
+        <!--android:background="@color/textWhite"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:gravity="left|center_vertical"-->
+        <!--android:textColor="#A5A5A5"-->
+        <!--android:text="编辑生日"/>-->
         <EditText
             android:id="@+id/personal_edit_2"
             android:layout_width="match_parent"
@@ -114,7 +150,7 @@
             android:minHeight="45dp"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
-            android:hint="2019年8月"
+            android:hint="编辑生日"
             android:singleLine="true"
             android:textSize="16sp"
             android:background="@drawable/selector_edittext_bg"/>
@@ -130,16 +166,24 @@
             android:id="@+id/personal_edit_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:minHeight="45dp"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
-            android:hint="确认新密码"
+            android:hint="编辑个性签名"
             android:singleLine="true"
             android:textSize="16sp"
             android:background="@drawable/selector_edittext_bg"/>
+
+
+
+
+
+
+
+
+
 
 
         <View

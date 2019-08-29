@@ -2,6 +2,8 @@ package com.example.bottomtesttwo.fragments.login;
 
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.preference.PreferenceManager;
+import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +22,6 @@ import static com.example.bottomtesttwo.activity.MainActivity.setStatusBar;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private boolean loginPage = true;
-    private boolean loginOline = false;
     EditText editEmail;
     EditText editName;
     EditText editPassword;
@@ -28,10 +29,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Button loginButton;
     TextView textSign;
 
+    public static LoginActivity instance;
+    private SharedPreferences pref;
+    private SharedPreferences.Editor prefEditor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        instance = this;
 
         //去掉顶部标题(状态栏下面带有顶部返回按钮的那个)
         getSupportActionBar().hide();
@@ -50,6 +57,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginButton.setOnClickListener(this);
         textSign.setOnClickListener(this);
 
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
+        ownLogin();
+
     }
 
 
@@ -67,25 +77,37 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    private void ownLogin(){
+        if(pref.getString("email","").equals("") || pref.getString("email","").equals(null)){
+
+        }else {
+            if(pref.getString("password","").equals("") || pref.getString("password","").equals(null)){
+
+            }else {
+                finish();
+            }
+        }
+
+        if(pref.getString("id","").equals("") || pref.getString("id","").equals(null)){
+
+        }else {
+            finish();
+        }
+    }
+
     private void loginButton(){
         if (loginPage == true){//登录页
 
-            boolean idSuccess = false;
-            boolean passwordSuccess = false;
-            String idString = editName.getText().toString();
+            String email = editName.getText().toString();
             String password = editPassword.getText().toString();
 
-            if(idString.equals(null)){
+            if(email.equals(null)){
                 Toast.makeText(LoginActivity.this,"请输入账号",Toast.LENGTH_SHORT).show();
                 Log.d("ZXY","else if 1");
                 return;
-            }else if(idString.equals("")){//调用
+            }else if(email.equals("")){//调用
                 Toast.makeText(LoginActivity.this,"请输入账号",Toast.LENGTH_SHORT).show();
                 Log.d("ZXY","else if 2");
-                return;
-            }else if(idString.length()!=8){
-                Toast.makeText(LoginActivity.this,"请正确输入账号",Toast.LENGTH_SHORT).show();
-                Log.d("ZXY","else if 3");
                 return;
             }else if(password.equals(null)){
                 Toast.makeText(LoginActivity.this,"请输入密码",Toast.LENGTH_SHORT).show();
@@ -97,39 +119,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 return;
             }
 
-            int id = Integer.parseInt(idString);
-            DBSyncer dbSyncer = DBSyncer.getSyncer();
-            dbSyncer.start(id);
-            Log.d("ZXY","id："+id);
-
             DBOperator dbOperator = DBOperator.getOperator();
-            Cursor cursor = dbOperator.Query( "select * from user_info");
-//            Log.d("ZXY","id INT："+cursor.getColumnIndex("id"));
-            if(cursor.moveToFirst()){
-                do{
-                    Log.d("ZXY","login：成功进入do");
-                    Log.d("ZXY","login："+cursor.getString(cursor.getColumnIndex("id")));
-                    Log.d("ZXY","login："+cursor.getString(cursor.getColumnIndex("password")));
+            dbOperator.Seek(email,password);
 
-                    if(id == cursor.getInt(cursor.getColumnIndex("id"))){
-                        Log.d("ZXY","login：成功进入if1");
-                        idSuccess = true;
-                        if(password.equals(cursor.getString(cursor.getColumnIndex("password")))){
-                            Log.d("ZXY","login：成功进入if2");
-                            finish();
-                            passwordSuccess = true;
-                            Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }while (cursor.moveToNext());
-            }
-            cursor.close();
-
-            if(idSuccess == false){
-                Toast.makeText(LoginActivity.this,"账号不存在",Toast.LENGTH_SHORT).show();
-            }else if(idSuccess==true && passwordSuccess==false){
-                Toast.makeText(LoginActivity.this,"密码错误",Toast.LENGTH_SHORT).show();
-            }
 
         }else if(loginPage == false){//注册页
             Log.d("ZXY","注册页逻辑");
@@ -139,24 +131,49 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             String string3 = editRpPassword.getText().toString();
 
 
+            //判断邮箱格式
             if(string1.equals("") || string1.equals(null)){
                 Toast.makeText(LoginActivity.this,"请输入邮箱",Toast.LENGTH_SHORT).show();
                 return;
-            }else if(string2.equals("") || string2.equals(null)){
+            }
+
+            if(string1.matches("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*"))
+            {
+
+            }
+            else
+            {
+                Toast.makeText(LoginActivity.this,"邮箱格式不正确",Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            //判断密码格式
+            if(string2.equals("") || string2.equals(null)){
                 Toast.makeText(LoginActivity.this,"请输入密码",Toast.LENGTH_SHORT).show();
                 return;
-            }else if(string3.equals("") || string3.equals(null)){
+            }else if(string2.length() >= 15){
+                Toast.makeText(LoginActivity.this,"密码超长，最多15位",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            else if(string3.equals("") || string3.equals(null)){
                 Toast.makeText(LoginActivity.this,"请确认密码",Toast.LENGTH_SHORT).show();
                 return;
             }
 
+            //判断两个密码是否相等
             if(string2.equals(string3)){
 
                 DBOperator dbOperator = DBOperator.getOperator();
-                dbOperator.Cud( "insert into user_info (password,email) values ('"+string2+"','"+string1+"')");
+                dbOperator.Add(string1,string2);
+
+                prefEditor = pref.edit();
+                prefEditor.putString("email",string1);
+                prefEditor.putString("password",string2);
+                prefEditor.apply();
+
                 finish();
                 Toast.makeText(LoginActivity.this,"注册成功，自动登录",Toast.LENGTH_SHORT).show();
-
+                return;
             }else {
                 Toast.makeText(LoginActivity.this,"两次输入密码不同",Toast.LENGTH_SHORT).show();
                 return;

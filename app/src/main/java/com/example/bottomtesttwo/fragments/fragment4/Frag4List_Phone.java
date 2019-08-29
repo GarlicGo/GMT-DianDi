@@ -24,7 +24,9 @@ public class Frag4List_Phone extends AppCompatActivity implements View.OnClickLi
     LinearLayout layout;
     TextView textView1;
     TextView textView2;
-
+    DBOperator dbOperator = DBOperator.getOperator();
+    Cursor cursor = dbOperator.Query( "select * from user_info");
+    private int id;
 
 
     private boolean playOut = false;
@@ -50,9 +52,9 @@ public class Frag4List_Phone extends AppCompatActivity implements View.OnClickLi
         button.setOnClickListener(this);
         imageView.setOnClickListener(this);
 
-        DBOperator dbOperator = DBOperator.getOperator();
-        Cursor cursor = dbOperator.Query( "select * from user_info");
+
         cursor.moveToFirst();
+        id = cursor.getInt(cursor.getColumnIndex("id"));
         if(cursor.getString(cursor.getColumnIndex("phoneNumber")).equals("")){
             Log.d("ZXY","空");
             notBind();
@@ -105,12 +107,12 @@ public class Frag4List_Phone extends AppCompatActivity implements View.OnClickLi
         textView2.setText(phoneNumber);
         button.setText("更换");
         textView1.setText("你已绑定手机号码");
-        btnChange();
     }
 
     private void updatePhoneNumber(){
         textView2.setVisibility(View.VISIBLE);
         textView2.setText(editText.getText().toString());
+        dbOperator.Cud("update user_info set phoneNumber='"+editText.getText().toString()+"' where id='"+id+"'");
         button.setText("更换");
         textView1.setText("你已绑定手机号码");
         btnChange();

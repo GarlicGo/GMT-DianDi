@@ -27,6 +27,7 @@ public class Frag4List_Email extends AppCompatActivity implements View.OnClickLi
     TextView textView2;
     DBOperator dbOperator = DBOperator.getOperator();
     Cursor cursor = dbOperator.Query( "select * from user_info");
+    private int id;
 
     private boolean playOut = false;
 
@@ -52,6 +53,7 @@ public class Frag4List_Email extends AppCompatActivity implements View.OnClickLi
 
 
         cursor.moveToFirst();
+        id = cursor.getInt(cursor.getColumnIndex("id"));
         if(cursor.getString(cursor.getColumnIndex("email")).equals("")){
             notBind();
         }else {
@@ -109,6 +111,7 @@ public class Frag4List_Email extends AppCompatActivity implements View.OnClickLi
         }else {
             textView2.setVisibility(View.VISIBLE);
             textView2.setText(editText.getText().toString());
+            dbOperator.Cud("update user_info set email='"+editText.getText().toString()+"' where id='"+id+"'");
             button.setText("更换");
             textView1.setText("你已绑定邮箱");
             btnChange();

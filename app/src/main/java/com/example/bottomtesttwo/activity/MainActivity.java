@@ -69,9 +69,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         replaceFragment(new Fragment1());//默认加载fragment1页面
 
-//        login();
-        DBSyncer dbSyncer = DBSyncer.getSyncer();
-        dbSyncer.start(10000001);
+        login();
 
         //底部菜单栏实体
         mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bnv);
