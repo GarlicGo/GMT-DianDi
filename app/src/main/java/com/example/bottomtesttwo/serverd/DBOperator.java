@@ -1,5 +1,6 @@
 package com.example.bottomtesttwo.serverd;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -191,8 +192,9 @@ public class DBOperator {
                     prefEditor.putString("id",""+status);
                     prefEditor.apply();
 
+
+
                     Toast.makeText(LoginActivity.instance,"登录成功",Toast.LENGTH_SHORT).show();
-                    LoginActivity.instance.finish();
                     Log.d("ZXY", "Registered successfully, and id is: "+status);
                     break;
             }

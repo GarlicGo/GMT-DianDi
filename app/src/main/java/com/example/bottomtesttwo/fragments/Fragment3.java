@@ -1,5 +1,6 @@
 package com.example.bottomtesttwo.fragments;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,11 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bottomtesttwo.R;
+import com.example.bottomtesttwo.activity.MainActivity;
 import com.example.bottomtesttwo.fragments.fragment3.Frag3Adapter;
 import com.example.bottomtesttwo.fragments.fragment3.Frag3Item;
 import com.example.bottomtesttwo.fragments.fragment3.charts.AnalyzeSpend;
@@ -23,12 +26,14 @@ import com.example.bottomtesttwo.fragments.fragment3.Frag3Item1Adapter;
 import com.example.bottomtesttwo.fragments.fragment3.Frag3Item2;
 import com.example.bottomtesttwo.fragments.fragment3.charts.DateIntent;
 import com.example.bottomtesttwo.fragments.fragment3.charts.NumberIntent;
+import com.example.bottomtesttwo.fragments.fragment4.Frag4List_Personal;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 //记账页
-public class Fragment3 extends Fragment implements View.OnClickListener {
+public class Fragment3 extends Fragment implements View.OnClickListener,DatePickerDialog.OnDateSetListener {
 
     private View view;
 
@@ -39,6 +44,8 @@ public class Fragment3 extends Fragment implements View.OnClickListener {
     private TextView analyzeSpendText;
     private TextView analyzeIncomeText;
     private TextView analyzeSumText;
+    public TextView textDate;
+    Calendar calendar = Calendar.getInstance();
 
     //RecyclerView
     List<Frag3Item> frag3ItemList = new ArrayList<>();
@@ -85,12 +92,15 @@ public class Fragment3 extends Fragment implements View.OnClickListener {
         analyzeSpendText = (TextView)view.findViewById(R.id.analyze_spend_text);
         analyzeIncomeText = (TextView)view.findViewById(R.id.analyze_income_text);
         analyzeSumText = (TextView)view.findViewById(R.id.analyze_sum_text);
+        textDate = (TextView)view.findViewById(R.id.frag3_date);
         analyzeSpendImg.setOnClickListener(this);
         analyzeIncomeImg.setOnClickListener(this);
         analyzeSumImg.setOnClickListener(this);
         analyzeSpendText.setOnClickListener(this);
         analyzeIncomeText.setOnClickListener(this);
         analyzeSumText.setOnClickListener(this);
+        textDate.setOnClickListener(this);
+
 
         //RecyclerView
         initFrag3Item();
@@ -135,6 +145,17 @@ public class Fragment3 extends Fragment implements View.OnClickListener {
                 break;
                 default:
                     break;
+            case R.id.frag3_date:
+                DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.instance,MainActivity.instance,
+                        calendar.get(Calendar.YEAR),
+                        calendar.get(Calendar.MONTH),
+                        calendar.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.show();
+                DatePicker dp = findDatePicker((ViewGroup) datePickerDialog.getWindow().getDecorView());
+                if (dp != null) {
+                    ((ViewGroup)((ViewGroup) dp.getChildAt(0)).getChildAt(0)).getChildAt(0).setVisibility(View.GONE);
+                }
+                break;
 
         }
     }
@@ -208,5 +229,36 @@ public class Fragment3 extends Fragment implements View.OnClickListener {
     private void initFrag3Item(){
 
     }
+
+    private DatePicker findDatePicker(ViewGroup group) {
+        if (group != null) {
+            for (int i = 0, j = group.getChildCount(); i < j; i++) {
+                View child = group.getChildAt(i);
+                if (child instanceof DatePicker) {
+                    return (DatePicker) child;
+                } else if (child instanceof ViewGroup) {
+                    DatePicker result = findDatePicker((ViewGroup) child);
+                    if (result != null)
+                        return result;
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+    }
+
+//    @Override
+//    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+//
+//        textDate.setText(String.format("%d年%d月",year,month+1));
+//        Toast.makeText(getActivity(),"hhh",Toast.LENGTH_SHORT).show();
+////        dp_date = String.format("%d月%d日",month+1,dayOfMonth);
+////        accountingDate = String.format("%d年%d月%d日",year,month+1,dayOfMonth);
+////        tv_date.setText(dp_date);
+//    }
 
 }

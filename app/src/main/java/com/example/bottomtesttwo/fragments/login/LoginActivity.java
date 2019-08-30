@@ -1,5 +1,6 @@
 package com.example.bottomtesttwo.fragments.login;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.preference.PreferenceManager;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bottomtesttwo.R;
+import com.example.bottomtesttwo.activity.MainActivity;
 import com.example.bottomtesttwo.serverd.DBOperator;
 import com.example.bottomtesttwo.serverd.DBSyncer;
 
@@ -84,14 +86,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             if(pref.getString("password","").equals("") || pref.getString("password","").equals(null)){
 
             }else {
-                finish();
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
             }
         }
 
         if(pref.getString("id","").equals("") || pref.getString("id","").equals(null)){
 
         }else {
-            finish();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -171,7 +175,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 prefEditor.putString("password",string2);
                 prefEditor.apply();
 
-                finish();
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
                 Toast.makeText(LoginActivity.this,"注册成功，自动登录",Toast.LENGTH_SHORT).show();
                 return;
             }else {

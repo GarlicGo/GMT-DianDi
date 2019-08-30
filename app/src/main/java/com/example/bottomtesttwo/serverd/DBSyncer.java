@@ -1,9 +1,13 @@
 package com.example.bottomtesttwo.serverd;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.example.bottomtesttwo.activity.MainActivity;
+import com.example.bottomtesttwo.fragments.login.LoginActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -69,9 +73,13 @@ public class DBSyncer {
         protected void onPostExecute(Boolean aBoolean) {
             if (aBoolean == true) {
                 Log.d("MYX", "DBSyncer: success");
+                Intent intent = new Intent(LoginActivity.instance, MainActivity.class);
+                LoginActivity.instance.startActivity(intent);
+                LoginActivity.instance.finish();
             } else {
                 Log.d("MYX", "DBSyncer: failed");
             }
+
         }
 
         private boolean parseData(String queryResult) {

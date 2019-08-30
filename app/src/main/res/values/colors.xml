@@ -10,4 +10,5 @@
     <color name="textBlack">#000000</color>
     <color name="background_gray">#EEEEEE</color>
     <color name="calculator_checked">#7A255BFC</color>
+    <color name="gray">#8c8c8c</color>
 </resources>

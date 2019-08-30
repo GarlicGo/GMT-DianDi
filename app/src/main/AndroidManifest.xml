@@ -19,8 +19,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".fragments.fragment2.Calculator2"></activity>
-        <activity android:name=".fragments.login.LoginActivity" />
+        <activity android:name=".fragments.fragment1.Calculator11Update"></activity>
+        <activity android:name=".fragments.fragment1.Calculator1_2" />
+        <activity android:name=".fragments.fragment1.Calculator1_1" />
+        <activity android:name=".fragments.fragment2.Calculator2" />
+        <activity android:name=".fragments.login.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".fragments.fragment4.Frag4List_Email"
             android:launchMode="singleTask" />
@@ -42,13 +51,7 @@
         <activity android:name=".fragments.fragment3.charts.AnalyzeSpend" />
         <activity
             android:name=".activity.MainActivity"
-            android:launchMode="singleTask">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:launchMode="singleTask" />
     </application>
 
 </manifest>

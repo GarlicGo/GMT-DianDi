@@ -65,14 +65,6 @@ public class Frag4Adapter extends RecyclerView.Adapter {
             }
         });
 
-//        holder.clickView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.d("ZXY","Adapter");
-//
-//            }
-//        });
-
 
         return holder;
     }

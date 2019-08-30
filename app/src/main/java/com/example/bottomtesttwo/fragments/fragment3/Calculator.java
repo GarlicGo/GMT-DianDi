@@ -2,6 +2,7 @@ package com.example.bottomtesttwo.fragments.fragment3;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import android.support.v4.view.ViewPager;
 
 import com.example.bottomtesttwo.R;
+import com.example.bottomtesttwo.serverd.DBOperator;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -32,6 +34,9 @@ public class Calculator extends AppCompatActivity implements OnClickListener, Da
     CalculatorAdapter calculatorIncomeAdapter;
 
 
+    DBOperator dbOperator = DBOperator.getOperator();
+    Cursor cursor = dbOperator.Query( "select * from user_info");
+    private int id;
 
     private String dp_date;
     private TextView tv_date;
@@ -377,6 +382,7 @@ public class Calculator extends AppCompatActivity implements OnClickListener, Da
         intent.putExtra("accountingDate",accountingDate);
         intent.putExtra("tip",tip);
         setResult(RESULT_OK,intent);
+        dbOperator.Cud("insert into amount_changes set email='"+editText.getText().toString()+"' where id='"+id+"'");
 
         finish();
     }
@@ -386,53 +392,5 @@ public class Calculator extends AppCompatActivity implements OnClickListener, Da
         setResult(RESULT_CANCELED,intent);
         finish();
     }
-
-
-
-//    @Override
-//    public void onClick(int position) {
-//        Toast.makeText(Calculator2.this,position+"11111",Toast.LENGTH_SHORT).show();
-//    }
-
-
-//    private void selectItem(int posotion){
-//        Log.d("CalculatorAdapter","1111111");
-//        Toast.makeText(Calculator2.this,"000",Toast.LENGTH_SHORT).show();
-//        if(firstType == 1){
-//            CalculatorSortItem calculatorOutputItem = calculatorSpendSortItemList.get(posotion);
-//            editText.setHint(calculatorOutputItem.getName());
-//        }else if(firstType == 2){
-//            CalculatorSortItem calculatorInputItem = calculatorIncomeSortItemList.get(posotion);
-//            editText.setHint(calculatorInputItem.getName());
-//        }
-//    }
-//
-//    @Override
-//    public void select(View view, int position) {
-//        Log.d("CalculatorAdapter","22222222222");
-//        calculatorIncomeAdapter.setSelectItem(new CalculatorAdapter.SelectItem() {
-//            @Override
-//            public void select(View view, int position) {
-//                selectItem(position); //对数据进行操作的函数，自己定义的
-//            }
-//        });
-//    }
-
-//    private void selectPosotion(){
-//        if(firstType == 1){
-//            for (int i = 0; i<calculatorSpendSortItemList.size() ; i++){
-//
-//                if(calculatorSpendAdapter.getItemViewType(i).){
-//
-//                }
-//            }
-//        }else if(firstType == 2){
-//            for(int i = 0;i<calculatorIncomeSortItemList.size();i++){
-//
-//            }
-//        }
-//    }
-
-
 }
 

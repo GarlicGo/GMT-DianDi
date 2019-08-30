@@ -2,6 +2,7 @@ package com.example.bottomtesttwo.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.example.bottomtesttwo.R;
@@ -23,6 +25,8 @@ import com.example.bottomtesttwo.fragments.Fragment1;
 import com.example.bottomtesttwo.fragments.Fragment2;
 import com.example.bottomtesttwo.fragments.Fragment3;
 import com.example.bottomtesttwo.fragments.Fragment4;
+import com.example.bottomtesttwo.fragments.fragment1.Calculator1_1;
+import com.example.bottomtesttwo.fragments.fragment1.Calculator1_2;
 import com.example.bottomtesttwo.fragments.fragment2.Calculator2;
 import com.example.bottomtesttwo.fragments.fragment3.Calculator;
 import com.example.bottomtesttwo.fragments.fragment3.Frag3Item1;
@@ -38,7 +42,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     private BottomNavigationView mBottomNavigationView;//用于接收底部菜单栏实体
     private MenuItem mMenuItem;//用于获取菜单栏当前处于哪一个位置
@@ -46,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
     private Fragment2 fragment2;
     private Fragment3 fragment3;
     private Fragment4 fragment4;
+
+    public static MainActivity instance = null;
 
     private boolean loginOlineState = false;
 //    private Fragment1 fragment1 = new Fragment1();
@@ -69,7 +75,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         replaceFragment(new Fragment1());//默认加载fragment1页面
 
-        login();
+//        login();
+        instance = this;
+
+//        DBOperator dbOperator = DBOperator.getOperator();
+//        Cursor cursor;
+//        int id ;
+//        cursor = dbOperator.Query( "select * from user_info");
+//        cursor.moveToFirst();
+//        id = cursor.getInt(cursor.getColumnIndex("id"));
+//        cursor.close();
+//        DBSyncer dbSyncer = DBSyncer.getSyncer();
+//        dbSyncer.start(id);
 
         //底部菜单栏实体
         mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bnv);
@@ -85,10 +102,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(mMenuItem == null){
-
+                    Fragment1 fragment1Temp = (Fragment1)getSupportFragmentManager().findFragmentById(R.id.bolck_fragmelayout);
+                    if(fragment1Temp.isFrag1FirstChange()){
+                        Intent intent11 = new Intent(MainActivity.this, Calculator1_1.class);
+                        startActivityForResult(intent11,1);
+                    }else {
+                        Intent intent12 = new Intent(MainActivity.this, Calculator1_2.class);
+                        startActivityForResult(intent12,1);
+                    }
                 }else {
                     switch (mMenuItem.getItemId()){
                         case R.id.item_tab1:
+                            Fragment1 fragment1Temp = (Fragment1)getSupportFragmentManager().findFragmentById(R.id.bolck_fragmelayout);
+                            if(fragment1Temp.isFrag1FirstChange()){
+                                Intent intent11 = new Intent(MainActivity.this, Calculator1_1.class);
+                                startActivityForResult(intent11,1);
+                            }else {
+                                Intent intent12 = new Intent(MainActivity.this, Calculator1_2.class);
+                                startActivityForResult(intent12,1);
+                            }
                             break;
                         case R.id.item_tab2:
                             Intent intent2 = new Intent(MainActivity.this, Calculator2.class);
@@ -102,21 +134,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-//
-//        DBSyncer dbSyncer = DBSyncer.getSyncer();
-//        dbSyncer.start(10000001);
-//        DBOperator dbOperator = DBOperator.getOperator();
-//        Cursor cursor = dbOperator.Query("select * from user_info");
-//        cursor.moveToFirst();
-//        Toast.makeText(MainActivity.this,"hhhhh:"+cursor.getString(cursor.getColumnIndex("id")),Toast.LENGTH_SHORT).show();
-//        DBOperator dbOperator = DBOperator.getOperator();
-//        dbOperator.Cud(10000001, "insert into account_records (title) values ('66666')");
-//        dbOperator.Cud(10000001,"update user_info set username='Morilence' where id='10000001'");
-//        Cursor cursor = dbOperator.Query("select * from user_info");
-//        cursor.moveToFirst();
-//        Toast.makeText(MainActivity.this,"hhhhh:"+cursor.getString(cursor.getColumnIndex("username")),Toast.LENGTH_SHORT).show();
-
 
         //底部菜单栏点击监听事件
         mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -189,6 +206,13 @@ public class MainActivity extends AppCompatActivity {
 //        super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode){
             case 1:
+                Log.d("ZXYBACK","case 1");
+                if(resultCode == RESULT_OK){
+                    Log.d("ZXYBACK","case 1 OK");
+                    Fragment1 fragment1Temp = (Fragment1)getSupportFragmentManager().findFragmentById(R.id.bolck_fragmelayout);
+                    fragment1Temp.initItem1List();
+                    Toast.makeText(this,"you did it",Toast.LENGTH_SHORT).show();
+                }
                 break;
             case 2:
                 break;
@@ -218,5 +242,12 @@ public class MainActivity extends AppCompatActivity {
             Intent loginIntent = new Intent(this, LoginActivity.class);
             startActivity(loginIntent);
         }
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+//        textDate.setText(String.format("%d年%d月",year,month+1));
+        fragment3.textDate.setText(String.format("%d年%d月",year,month+1));
+
     }
 }

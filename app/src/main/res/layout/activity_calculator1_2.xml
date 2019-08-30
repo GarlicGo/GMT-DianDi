@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.fragment1.Calculator1_2">
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:background="@color/tab_checked">
+        <RelativeLayout
+            android:id="@+id/back_layout"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/frag1_cal1_back_btn2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingRight="10dp"
+                android:src="@drawable/back"
+                android:onClick="calculator1_onClick2"
+                android:layout_marginLeft="15dp"/>
+
+            <TextView
+                android:layout_marginTop="14dp"
+                android:layout_marginLeft="110dp"
+                android:layout_toRightOf="@+id/frag1_cal1_back_btn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textWhite"
+                android:textSize="20sp"
+                android:text="添加卡户"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</LinearLayout>
