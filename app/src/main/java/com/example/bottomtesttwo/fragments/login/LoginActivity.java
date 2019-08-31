@@ -175,8 +175,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 prefEditor.putString("password",string2);
                 prefEditor.apply();
 
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+
                 Toast.makeText(LoginActivity.this,"注册成功，自动登录",Toast.LENGTH_SHORT).show();
                 return;
             }else {

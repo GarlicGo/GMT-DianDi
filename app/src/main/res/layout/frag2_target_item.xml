@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="8dp">
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:background="@drawable/frag1_item2_shape"
+        android:orientation="horizontal"
+        android:elevation="4dp"
+        >
+
+        <LinearLayout
+            android:layout_marginLeft="30dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="目标名称"
+                 />
+
+            <TextView
+                android:id="@+id/frag2_target_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textBlack"
+                android:textSize="20sp"
+                android:text="188"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="30dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="起止日期(天)"/>
+
+            <TextView
+                android:id="@+id/frag2_target_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textBlack"
+                android:textSize="20sp"
+                android:text="188"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="30dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="存钱目标(元)"/>
+
+            <TextView
+                android:id="@+id/frag2_target_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textBlack"
+                android:textSize="20sp"
+                android:text="188"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

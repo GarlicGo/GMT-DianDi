@@ -2,6 +2,7 @@ package com.example.bottomtesttwo.serverd;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -72,14 +73,50 @@ public class DBSyncer {
         @Override
         protected void onPostExecute(Boolean aBoolean) {
             if (aBoolean == true) {
-                Log.d("MYX", "DBSyncer: success");
+                DBOperator dbOperator = DBOperator.getOperator();
+                Cursor cursor = dbOperator.Query( "select * from user_info");
+                cursor.moveToFirst();
+                long status = cursor.getInt(cursor.getColumnIndex("id"));
+                cursor.close();
+                cursor = dbOperator.Query("select * from card_records where user_info_id='"+status+"'");
+                if(cursor.moveToFirst()){
+
+                }else {
+                    for (int i = 1; i <= 6; i++) {
+                        String title = "错误";
+                        switch (i){
+                            case 1:
+                                title = "现金";
+                                break;
+                            case 2:
+                                title = "储蓄卡";
+                                break;
+                            case 3:
+                                title = "信用卡";
+                                break;
+                            case 4:
+                                title = "支付宝";
+                                break;
+                            case 5:
+                                title = "微信";
+                                break;
+                            case 6:
+                                title = "饭卡";
+                                break;
+                        }
+                        dbOperator.Cud("insert into card_records (id,icon,title,balance,user_info_id) values ('"
+                                +status+""+i+"','"+i+"','" +title+"','0','" +status+"')");
+                    }
+                }
+
                 Intent intent = new Intent(LoginActivity.instance, MainActivity.class);
                 LoginActivity.instance.startActivity(intent);
                 LoginActivity.instance.finish();
+                Log.d("MYX", "DBSyncer: success");
+                Log.d("ZXYY", "status:"+status);
             } else {
                 Log.d("MYX", "DBSyncer: failed");
             }
-
         }
 
         private boolean parseData(String queryResult) {
@@ -174,7 +211,7 @@ public class DBSyncer {
                 for (int i=0; i<Account_Records.length(); i++) {
                     JSONObject curRow = Account_Records.getJSONObject(i);
                     ContentValues values = new ContentValues();
-                    values.put("id", curRow.getInt("id"));
+                    values.put("id", curRow.getLong("id"));
                     values.put("icon", curRow.getInt("icon"));
                     values.put("title", curRow.getString("title"));
                     values.put("description", curRow.getString("description"));
@@ -186,8 +223,8 @@ public class DBSyncer {
                     values.put("IDNumber", curRow.getString("IDNumber"));
                     values.put("user_info_id", curRow.getInt("user_info_id"));
                     db.insert("account_records", null, values);
-                    return true;
                 }
+                return true;
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -206,15 +243,15 @@ public class DBSyncer {
                 for (int i=0; i<Card_Records.length(); i++) {
                     JSONObject curRow = Card_Records.getJSONObject(i);
                     ContentValues values = new ContentValues();
-                    values.put("id", curRow.getInt("id"));
+                    values.put("id", curRow.getLong("id"));
                     values.put("icon", curRow.getString("icon"));
                     values.put("title", curRow.getString("title"));
                     values.put("description", curRow.getString("description"));
                     values.put("balance", curRow.getDouble("balance"));
                     values.put("user_info_id", curRow.getInt("user_info_id"));
                     db.insert("card_records", null, values);
-                    return true;
                 }
+                return true;
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -236,18 +273,18 @@ public class DBSyncer {
                 for (int i=0; i<Saving_Records.length(); i++) {
                     JSONObject curRow = Saving_Records.getJSONObject(i);
                     ContentValues values = new ContentValues();
-                    values.put("id", curRow.getInt("id"));
+                    values.put("id", curRow.getLong("id"));
                     values.put("savingAmount", curRow.getDouble("savingAmount"));
                     values.put("remarks", curRow.getInt("remarks"));
                     values.put("date", curRow.getInt("date"));
                     values.put("time", curRow.getInt("time"));
-                    values.put("originCard", curRow.getInt("originCard"));
-                    values.put("targetCard", curRow.getInt("targetCard"));
-                    values.put("plan_info_id", curRow.getInt("plan_info_id"));
+                    values.put("originCard", curRow.getLong("originCard"));
+                    values.put("targetCard", curRow.getLong("targetCard"));
+                    values.put("plan_info_id", curRow.getLong("plan_info_id"));
                     values.put("user_info_id", curRow.getInt("user_info_id"));
                     db.insert("saving_records", null, values);
-                    return true;
                 }
+                return true;
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -270,7 +307,7 @@ public class DBSyncer {
                 for (int i=0; i<Amount_Changes.length(); i++) {
                     JSONObject curRow = Amount_Changes.getJSONObject(i);
                     ContentValues values = new ContentValues();
-                    values.put("id", curRow.getInt("id"));
+                    values.put("id", curRow.getLong("id"));
                     values.put("icon", curRow.getString("icon"));
                     values.put("changeAmount", curRow.getDouble("changeAmount"));
                     values.put("changeType", curRow.getInt("changeType"));
@@ -278,11 +315,11 @@ public class DBSyncer {
                     values.put("remarks", curRow.getString("remarks"));
                     values.put("date", curRow.getInt("date"));
                     values.put("time", curRow.getInt("time"));
-                    values.put("operatedCard", curRow.getInt("operatedCard"));
+                    values.put("operatedCard", curRow.getLong("operatedCard"));
                     values.put("user_info_id", curRow.getInt("user_info_id"));
                     db.insert("amount_changes", null, values);
-                    return true;
                 }
+                return true;
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -302,16 +339,16 @@ public class DBSyncer {
                 for (int i=0; i<Plan_Info.length(); i++) {
                     JSONObject curRow = Plan_Info.getJSONObject(i);
                     ContentValues values = new ContentValues();
-                    values.put("id", curRow.getInt("id"));
+                    values.put("id", curRow.getLong("id"));
                     values.put("expectantAmount", curRow.getDouble("expectantAmount"));
                     values.put("startTime", curRow.getInt("startTime"));
                     values.put("duration", curRow.getInt("duration"));
-                    values.put("originCard", curRow.getInt("originCard"));
-                    values.put("targetCard", curRow.getInt("targetCard"));
+                    values.put("originCard", curRow.getLong("originCard"));
+                    values.put("targetCard", curRow.getLong("targetCard"));
                     values.put("user_info_id", curRow.getInt("user_info_id"));
                     db.insert("plan_info", null, values);
-                    return true;
                 }
+                return true;
             } catch (JSONException e) {
                 e.printStackTrace();
             }

@@ -3,6 +3,7 @@ package com.example.bottomtesttwo.fragments.fragment3;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,9 +39,11 @@ public class Calculator extends AppCompatActivity implements OnClickListener, Da
     Cursor cursor = dbOperator.Query( "select * from user_info");
     private int id;
 
+    private long card_records_id;
     private String dp_date;
     private TextView tv_date;
     private TextView tb_note_money;
+    private TextView tb_moneyType;
     private String display = "0.00";
     TextView textViewOutcome;
     TextView textViewIncome;
@@ -82,7 +85,7 @@ public class Calculator extends AppCompatActivity implements OnClickListener, Da
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH)+1;
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-        accountingDate = year + "年" + month + "月" + day + "日";
+        accountingDate = (year%100) + "" + month + "" + day;
 
         initSpendSorts();
         initIncomeSorts();
@@ -96,11 +99,25 @@ public class Calculator extends AppCompatActivity implements OnClickListener, Da
 
         textViewOutcome = (TextView)findViewById(R.id.tb_note_outcome);
         textViewIncome = (TextView)findViewById(R.id.tb_note_income);
+        tb_moneyType = (TextView)findViewById(R.id.tb_note_cash) ;
+        tb_moneyType.setOnClickListener(this);
         textViewOutcome.setOnClickListener(this);
         textViewIncome.setOnClickListener(this);
         textViewOutcome.setSelected(true);
         textViewIncome.setSelected(false);
         firstType = 1;
+
+        cursor = dbOperator.Query( "select * from user_info");
+        cursor.moveToFirst();
+        id = cursor.getInt(cursor.getColumnIndex("id"));
+        cursor = dbOperator.Query( "select * from card_records where user_info_id='"+id+"'");
+
+        if(cursor.moveToFirst()){
+            tb_moneyType.setText(cursor.getString(cursor.getColumnIndex("title")));
+            card_records_id = cursor.getLong(cursor.getColumnIndex("id"));
+        }
+        cursor.close();
+
 
 
         calculatorIncomeAdapter.onClickListener(new CalculatorAdapter.onItemClick() {
@@ -197,16 +214,34 @@ public class Calculator extends AppCompatActivity implements OnClickListener, Da
                 textViewOutcome.setSelected(false);
                 firstType = 2;
                 break;
+            case R.id.tb_note_cash:
+                Intent intentMoneyType = new Intent(Calculator.this,MoneyTypeListActivity.class);
+                startActivityForResult(intentMoneyType,1);
+                break;
                 default:
                     break;
         }
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode){
+            case 1:
+                if(resultCode == RESULT_OK){
+                    tb_moneyType.setText(data.getStringExtra("name"));
+                    card_records_id = data.getLongExtra("card_id",0);
+//                    Toast.makeText(this,""+data.getLongExtra("card_id",0),Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+    }
+
+    @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         dp_date = String.format("%d月%d日",month+1,dayOfMonth);
-        accountingDate = String.format("%d年%d月%d日",year,month+1,dayOfMonth);
+        accountingDate = String.format("%02d%02d%02d",year%100,month+1,dayOfMonth);
         tv_date.setText(dp_date);
+        Toast.makeText(Calculator.this,""+accountingDate,Toast.LENGTH_SHORT).show();
     }
 
 
@@ -367,9 +402,25 @@ public class Calculator extends AppCompatActivity implements OnClickListener, Da
             }
         }
 
+        cursor = dbOperator.Query( "select * from user_info");
+        cursor.moveToFirst();
+        id = cursor.getInt(cursor.getColumnIndex("id"));
+        cursor.close();
+
+        long accountingDate1 = Long.parseLong(accountingDate);
+        Calendar calendar = Calendar.getInstance();
+        //获取系统时间
+        //小时
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        //分钟
+        int minute = calendar.get(Calendar.MINUTE);
+        //秒
+        int second = calendar.get(Calendar.SECOND);
+        accountingDate = accountingDate+minute+second;
+        long accountingDate2 = Long.parseLong(accountingDate);
+
 
         moneyNumber = Double.parseDouble(display);
-
         if(firstType==1){
             moneyNumber = -moneyNumber;
         }
@@ -382,7 +433,7 @@ public class Calculator extends AppCompatActivity implements OnClickListener, Da
         intent.putExtra("accountingDate",accountingDate);
         intent.putExtra("tip",tip);
         setResult(RESULT_OK,intent);
-        dbOperator.Cud("insert into amount_changes set email='"+editText.getText().toString()+"' where id='"+id+"'");
+//        dbOperator.Cud("insert into amount_changes set email='"+editText.getText().toString()+"' where id='"+id+"'");
 
         finish();
     }

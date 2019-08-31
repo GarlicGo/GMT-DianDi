@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private Fragment2 fragment2;
     private Fragment3 fragment3;
     private Fragment4 fragment4;
+    public FloatingActionButton addBottom;
 
     public static MainActivity instance = null;
 
@@ -59,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 //    private Fragment3 fragment3 = new Fragment3();
 //    private Fragment4 fragment4 = new Fragment4();
 //    List<Fragment> fragments = new
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         fragment4 = new Fragment4();
 
         //悬浮添加按钮
-        final FloatingActionButton addBottom = (FloatingActionButton)findViewById(R.id.float_add);
+        addBottom = (FloatingActionButton)findViewById(R.id.float_add);;
 
         addBottom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         startActivityForResult(intent11,1);
                     }else {
                         Intent intent12 = new Intent(MainActivity.this, Calculator1_2.class);
-                        startActivityForResult(intent12,1);
+                        startActivityForResult(intent12,21);
                     }
                 }else {
                     switch (mMenuItem.getItemId()){
@@ -225,6 +228,18 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     String tip = data.getStringExtra("tip");
                     String accountingDate = data.getStringExtra("accountingDate");//记录日期（2019年8月22日）
                     addItem(tip,secondType,moneyNumber,accountingDate.substring(5,accountingDate.length()));
+                }
+                break;
+            case 20:
+                if(resultCode == RESULT_OK){
+                    Fragment1 fragment1Temp = (Fragment1)getSupportFragmentManager().findFragmentById(R.id.bolck_fragmelayout);
+                    fragment1Temp.initItem1List();
+                }
+                break;
+            case 21:
+                if(resultCode == RESULT_OK){
+                    Fragment1 fragment1Temp = (Fragment1)getSupportFragmentManager().findFragmentById(R.id.bolck_fragmelayout);
+                    fragment1Temp.initItem2List();
                 }
                 break;
         }

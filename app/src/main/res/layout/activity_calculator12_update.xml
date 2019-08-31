@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragments.fragment1.Calculator1_2">
+    tools:context=".fragments.fragment1.Calculator12Update">
 
     <RelativeLayout
         android:id="@+id/layout"
@@ -21,23 +21,36 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/frag1_cal1_back_btn2"
+                android:id="@+id/frag1_cal1_back_up_btn2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:paddingRight="10dp"
                 android:src="@drawable/back"
-                android:onClick="calculator1_onClick2"
+                android:onClick="calculator1_onClick2_up"
                 android:layout_marginLeft="15dp"/>
 
             <TextView
+                android:id="@+id/ddfdfs393"
                 android:layout_marginTop="14dp"
-                android:layout_marginLeft="110dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginRight="80dp"
                 android:layout_toRightOf="@+id/frag1_cal1_back_btn2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/textWhite"
                 android:textSize="20sp"
-                android:text="添加卡户"/>
+                android:text="编辑卡户"/>
+
+            <ImageView
+                android:layout_marginTop="11dp"
+                android:id="@+id/frag1_cal1_back_btn33333"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:paddingRight="10dp"
+                android:layout_toRightOf="@+id/ddfdfs393"
+                android:src="@drawable/lajitong"
+                android:onClick="calculator1_onClick2_up"
+                android:layout_marginLeft="15dp"/>
 
         </RelativeLayout>
 
@@ -63,7 +76,7 @@
             android:textColor="@color/textBlack"
             android:text="名称" />
         <EditText
-            android:id="@+id/frag1_calculator2_1"
+            android:id="@+id/frag1_calculator2_up1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -71,7 +84,7 @@
             android:minHeight="45dp"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
-            android:hint="（ 必填 ）"
+            android:hint="必填"
             android:singleLine="true"
             android:textSize="16sp"
             android:background="@drawable/selector_edittext_bg"/>
@@ -84,7 +97,7 @@
             android:textColor="@color/textBlack"
             android:text="余额" />
         <EditText
-            android:id="@+id/frag1_calculator2_2"
+            android:id="@+id/frag1_calculator2_up2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -92,7 +105,7 @@
             android:minHeight="45dp"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
-            android:hint="（ 必填 ）"
+            android:hint="必填"
             android:singleLine="true"
             android:textSize="16sp"
             android:background="@drawable/selector_edittext_bg"/>
@@ -118,7 +131,7 @@
                 android:gravity="center">
 
                 <Button
-                    android:id="@+id/frag1_cal2_button1"
+                    android:id="@+id/frag1_cal2_up_button1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
@@ -129,11 +142,11 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:text="取消"
-                    android:onClick="calculator1_onClick2"
+                    android:onClick="calculator1_onClick2_up"
                     style="@style/Button.Default"/>
 
                 <Button
-                    android:id="@+id/frag1_cal2_button2"
+                    android:id="@+id/frag1_cal2_up_button2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
@@ -144,7 +157,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:text="确认"
-                    android:onClick="calculator1_onClick2"
+                    android:onClick="calculator1_onClick2_up"
                     style="@style/Button.Default"/>
 
 
