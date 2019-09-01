@@ -19,41 +19,44 @@
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             tools:src="@mipmap/app_logo" />
-
         <TextView
-            android:id="@+id/frag3_item_date"
+            android:id="@+id/frag3_item_tip"
+            style="@style/Text.Brown"
+            android:paddingLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            style="@style/Text.Brown"
-            android:textSize="18sp"
-            android:text="9月7日"/>
-
-
+            android:gravity="center_vertical"
+            android:textSize="16sp"
+            android:textColor="@color/textBlack"
+            tools:text="分类名称(有备注显示备注)" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
+
         <TextView
-            android:id="@+id/frag3_item_tip"
-            style="@style/Text.Brown"
+            android:layout_marginRight="10dp"
+            android:id="@+id/frag3_item_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:gravity="center_vertical"
-            android:textSize="16sp"
-            tools:text="分类名称(有备注显示备注)" />
+            android:text="9月7日"/>
+
+
+
+
+
 
         <TextView
             android:id="@+id/frag3_item_money"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
             android:gravity="right"
             style="@style/Text.Brown"
             android:textSize="18sp"
+            android:textColor="@color/textBlack"
             android:text="¥ 600"
             />
 

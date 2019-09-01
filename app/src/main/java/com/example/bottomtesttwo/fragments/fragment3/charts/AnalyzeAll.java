@@ -34,7 +34,7 @@ import lecho.lib.hellocharts.view.LineChartView;
 
 import static com.example.bottomtesttwo.activity.MainActivity.setStatusBar;
 
-public class AnalyzeSpend extends AppCompatActivity {
+public class AnalyzeAll extends AppCompatActivity {
 
     DateIntent dateIntent;
     NumberIntent numberIntent;
@@ -75,17 +75,14 @@ public class AnalyzeSpend extends AppCompatActivity {
             do {
                 Log.d("ANA1","do");
                 double dataDouble = cursor.getDouble(cursor.getColumnIndex("changeAmount"));
-                if(dataDouble <= 0){
                     long Datelong1 = cursor.getLong(cursor.getColumnIndex("date"));
                     if(intentDateLong < Datelong1 && Datelong1 < (intentDateLong+100)){
-                        dataDouble = -dataDouble;
                         String string1 = ""+Datelong1;
                         String string11 = string1.substring(2,4)+"月"+string1.substring(4)+"日";
                         Analyze1 analyze1 = new Analyze1(string11,(int)dataDouble);
                         analyze1.setDataTime(Datelong1);
                         itemData.add(analyze1);
                     }
-                }
             }while (cursor.moveToNext());
 
             cursor.close();
@@ -139,7 +136,7 @@ public class AnalyzeSpend extends AppCompatActivity {
 //        //isPadding-是否预留出状态栏高度:true=是、false=fou;
 //        //dark:true=黑色字体  false=白色
 //        setStatusBar(this, false, true);
-        setContentView(R.layout.activity_analyze_spend);
+        setContentView(R.layout.activity_analyze_all);
 
         lineChart = (LineChartView) findViewById(R.id.line_chart);
 
@@ -149,7 +146,7 @@ public class AnalyzeSpend extends AppCompatActivity {
             dateIntent = (DateIntent)intent.getSerializableExtra("dateIntent") ;
             numberIntent = (NumberIntent)intent.getSerializableExtra("numberIntent");
             String temp = intent.getStringExtra("1");
-            Toast.makeText(AnalyzeSpend.this,"1111",Toast.LENGTH_SHORT).show();
+            Toast.makeText(AnalyzeAll.this,"1111",Toast.LENGTH_SHORT).show();
         }
         initData();
         Log.d("ANA1","inData.size():"+itemData.size());
@@ -200,9 +197,9 @@ public class AnalyzeSpend extends AppCompatActivity {
 
         int average2 = average/count;
 
-        TextView textView1 = (TextView)findViewById(R.id.ana1_1);
-        TextView textView2 = (TextView)findViewById(R.id.ana1_2);
-        textView1.setText("总支出："+all);
+        TextView textView1 = (TextView)findViewById(R.id.ana3_1);
+        TextView textView2 = (TextView)findViewById(R.id.ana3_2);
+        textView1.setText("总结余："+all);
         textView2.setText("平均值："+average2);
 //        for(String item:dateIntent.getStringListIntent()){
 //            Toast.makeText(AnalyzeSpend.this,"dateIntent",Toast.LENGTH_SHORT).show();

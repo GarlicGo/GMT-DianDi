@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.DatePicker;
@@ -85,7 +86,8 @@ public class Calculator extends AppCompatActivity implements OnClickListener, Da
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH)+1;
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-        accountingDate = (year%100) + "" + month + "" + day;
+//        accountingDate = (year%100) + "" + month + "" + day;
+        accountingDate = String.format("%02d%02d%02d",year%100,month,day);
 
         initSpendSorts();
         initIncomeSorts();
@@ -241,7 +243,7 @@ public class Calculator extends AppCompatActivity implements OnClickListener, Da
         dp_date = String.format("%d月%d日",month+1,dayOfMonth);
         accountingDate = String.format("%02d%02d%02d",year%100,month+1,dayOfMonth);
         tv_date.setText(dp_date);
-        Toast.makeText(Calculator.this,""+accountingDate,Toast.LENGTH_SHORT).show();
+//        Toast.makeText(Calculator.this,""+accountingDate,Toast.LENGTH_SHORT).show();
     }
 
 
@@ -416,7 +418,7 @@ public class Calculator extends AppCompatActivity implements OnClickListener, Da
         int minute = calendar.get(Calendar.MINUTE);
         //秒
         int second = calendar.get(Calendar.SECOND);
-        accountingDate = accountingDate+minute+second;
+        accountingDate = accountingDate+String.format("%02d%02d",minute%100,second%100);
         long accountingDate2 = Long.parseLong(accountingDate);
 
 
@@ -425,16 +427,47 @@ public class Calculator extends AppCompatActivity implements OnClickListener, Da
             moneyNumber = -moneyNumber;
         }
 
-        Intent intent = new Intent();
-        intent.putExtra("firstType",firstType);
-        intent.putExtra("secondType",secondType);
-        intent.putExtra("moneyCard",moneyCard);//未完成
-        intent.putExtra("moneyNumber",moneyNumber);
-        intent.putExtra("accountingDate",accountingDate);
-        intent.putExtra("tip",tip);
-        setResult(RESULT_OK,intent);
+
+        /**
+         * accountingDate2 -> id √
+         * accountingDate1 -> date √
+         * moneyNumber -> changeAmount √
+         * secondType -> icon 图片位置信息 √
+         *  tip -> remarks  √
+         *  id -> user_info_id √
+         *  card_records_id -> operatedCard √
+         */
 //        dbOperator.Cud("insert into amount_changes set email='"+editText.getText().toString()+"' where id='"+id+"'");
 
+        dbOperator.Cud("insert into amount_changes(id,date,changeAmount,icon,remarks,user_info_id,operatedCard) values ('"
+                +accountingDate2+"','"
+                +accountingDate1+"','"
+                +moneyNumber+"','"
+                +secondType+"','"
+                +tip+"','"
+                +id+"','"
+                +card_records_id+"') ");
+
+        cursor = dbOperator.Query("select * from card_records where id='"+card_records_id+"'");
+        if(cursor.moveToFirst()) {
+            double tempMoney = cursor.getDouble(cursor.getColumnIndex("balance"));
+            tempMoney = tempMoney + moneyNumber;
+            cursor.close();
+            dbOperator.Cud("update card_records set balance='"+tempMoney+"' where id='"+card_records_id+"'");
+        }
+
+//        cursor = dbOperator.Query("select * from amount_changes where id='"+accountingDate2+"'");
+//        if(cursor.moveToFirst()){
+//            Log.d("ZZZZZZ","进入成功："+cursor.getString(cursor.getColumnIndex("remarks")));
+//        }else {
+//            Log.d("ZZZZZZ","进入失败");
+//        }
+//
+////        Toast.makeText(this,""+cursor.getString(cursor.getColumnIndex("name")),Toast.LENGTH_SHORT).show();
+//        cursor.close();
+
+        Intent intent = new Intent();
+        setResult(RESULT_OK,intent);
         finish();
     }
 

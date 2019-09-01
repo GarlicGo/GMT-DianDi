@@ -195,7 +195,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="收支分析"/>
+                    android:text="结余分析"/>
 
             </LinearLayout>
 

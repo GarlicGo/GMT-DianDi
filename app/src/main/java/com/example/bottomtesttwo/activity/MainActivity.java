@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
 //        login();
         instance = this;
+        LoginActivity.instance.finish();
 
 //        DBOperator dbOperator = DBOperator.getOperator();
 //        Cursor cursor;
@@ -221,13 +222,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 break;
             case 3:
                 if(resultCode == RESULT_OK){
-                    int firstType = data.getIntExtra("firstType",0);//选择支出/收入，1为支出，2为收入
-                    int secondType = data.getIntExtra("secondType",0);//选择小类别
-                    //String moneyCard = (int) data.getShortExtra("moneyCard");//支付卡包类别
-                    double moneyNumber = data.getDoubleExtra("moneyNumber",0.00);//记录用户存入钱数
-                    String tip = data.getStringExtra("tip");
-                    String accountingDate = data.getStringExtra("accountingDate");//记录日期（2019年8月22日）
-                    addItem(tip,secondType,moneyNumber,accountingDate.substring(5,accountingDate.length()));
+                    Fragment3 fragment3Temp = (Fragment3)getSupportFragmentManager().findFragmentById(R.id.bolck_fragmelayout);
+                    fragment3Temp.initFrag3Item();
                 }
                 break;
             case 20:
@@ -248,7 +244,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     private boolean isAddNew = true;
 //    Fragment3 fragment3Control = (Fragment3)getSupportFragmentManager().findFragmentById(R.id.float_add);
-    public void addItem(String tip,int imageId,double number,String date){
+    public void addItem(String tip,int imageId,double number,long date){
         fragment3.addFrag3Item(tip,imageId,number,date);
     }
 
@@ -263,6 +259,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 //        textDate.setText(String.format("%d年%d月",year,month+1));
         fragment3.textDate.setText(String.format("%d年%d月",year,month+1));
-
+        fragment3.frag3Date = String.format("%02d%02d00",year%100,(month+1)%100);
+//        Toast.makeText(this,"11",Toast.LENGTH_SHORT).show();
+        fragment3.initFrag3Item();
     }
+
 }

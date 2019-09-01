@@ -55,7 +55,9 @@ public class Frag3Adapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Frag3Item frag3Item = mFrag3ItemList.get(position);
         ((ViewHolder)holder).frag3ItemImg.setImageResource(frag3Item.getImageId());
-        ((ViewHolder)holder).frag3ItemDate.setText(frag3Item.getDate());
+        String dateNumber = String.valueOf(frag3Item.getDate());
+        String datePut = dateNumber.substring(2,4)+"月"+dateNumber.substring(4)+"日";
+        ((ViewHolder)holder).frag3ItemDate.setText(""+datePut);
         ((ViewHolder)holder).frag3ItemTip.setText(frag3Item.getTip());
         ((ViewHolder)holder).frag3ItemMoney.setText("¥ "+frag3Item.getNumber());
     }

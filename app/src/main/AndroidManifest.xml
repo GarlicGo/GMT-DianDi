@@ -19,14 +19,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".fragments.fragment3.MoneyTypeListActivity"></activity>
+        <activity android:name=".fragments.fragment3.charts.AnalyzeAll"></activity>
+        <activity android:name=".fragments.fragment3.charts.AnalyzeIncome" />
+        <activity android:name=".fragments.fragment3.MoneyTypeListActivity" />
         <activity android:name=".fragments.fragment2.TargetListActivity" />
         <activity android:name=".fragments.fragment1.Calculator12Update" />
         <activity android:name=".fragments.fragment1.Calculator11Update" />
         <activity android:name=".fragments.fragment1.Calculator1_2" />
         <activity android:name=".fragments.fragment1.Calculator1_1" />
         <activity android:name=".fragments.fragment2.Calculator2" />
-        <activity android:name=".fragments.login.LoginActivity">
+        <activity
+            android:name=".fragments.login.LoginActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
