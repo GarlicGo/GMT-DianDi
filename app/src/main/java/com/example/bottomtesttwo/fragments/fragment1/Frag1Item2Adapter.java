@@ -20,13 +20,10 @@ public class Frag1Item2Adapter extends RecyclerView.Adapter {
     private List<Frag1Item2> frag1Item2List;
 
     private Frag1Item2Adapter.ClickInterface clickInterface;
-
-
     //回调接口
     public interface ClickInterface {
         void onItemClick(View view, int position);
     }
-
     public void setOnclick(Frag1Item2Adapter.ClickInterface clickInterface) {
         this.clickInterface = clickInterface;
     }
@@ -76,7 +73,8 @@ public class Frag1Item2Adapter extends RecyclerView.Adapter {
         Frag1Item2 frag1Item2 = frag1Item2List.get(position);
         ((ViewHolder)holder).imageView.setImageResource(frag1Item2.getImageAddress());
         ((ViewHolder)holder).textView1.setText(frag1Item2.getName());
-        ((ViewHolder)holder).textView2.setText(""+frag1Item2.getMoneyNumber());
+        String temp = String.format("%.2f",frag1Item2.getMoneyNumber());
+        ((ViewHolder)holder).textView2.setText(temp);
     }
 
     @Override

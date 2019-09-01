@@ -27,7 +27,9 @@ import com.example.bottomtesttwo.fragments.Fragment3;
 import com.example.bottomtesttwo.fragments.Fragment4;
 import com.example.bottomtesttwo.fragments.fragment1.Calculator1_1;
 import com.example.bottomtesttwo.fragments.fragment1.Calculator1_2;
+import com.example.bottomtesttwo.fragments.fragment2.AddTarget;
 import com.example.bottomtesttwo.fragments.fragment2.Calculator2;
+import com.example.bottomtesttwo.fragments.fragment2.TargetListActivity;
 import com.example.bottomtesttwo.fragments.fragment3.Calculator;
 import com.example.bottomtesttwo.fragments.fragment3.Frag3Item1;
 import com.example.bottomtesttwo.fragments.fragment3.Frag3Item2;
@@ -219,6 +221,12 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 }
                 break;
             case 2:
+                if(resultCode == RESULT_OK){
+                    Log.d("ZXYBACK","case 1 OK");
+                    Fragment2 fragment2Temp = (Fragment2)getSupportFragmentManager().findFragmentById(R.id.bolck_fragmelayout);
+                    fragment2Temp.init();
+//                    Toast.makeText(this,"you did it",Toast.LENGTH_SHORT).show();
+                }
                 break;
             case 3:
                 if(resultCode == RESULT_OK){
@@ -237,6 +245,10 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     Fragment1 fragment1Temp = (Fragment1)getSupportFragmentManager().findFragmentById(R.id.bolck_fragmelayout);
                     fragment1Temp.initItem2List();
                 }
+                break;
+            case 33:
+
+//                Toast.makeText(this,"33",Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -262,6 +274,19 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         fragment3.frag3Date = String.format("%02d%02d00",year%100,(month+1)%100);
 //        Toast.makeText(this,"11",Toast.LENGTH_SHORT).show();
         fragment3.initFrag3Item();
+    }
+
+    public void calculator2_onClick1(View view){
+        switch (view.getId()){
+            case R.id.frag2_2_1:
+                Intent intent221 = new Intent(this, TargetListActivity.class);
+                startActivityForResult(intent221,2);
+                break;
+            case R.id.frag2_2_2:
+                Intent intent222 = new Intent(this, AddTarget.class);
+                startActivityForResult(intent222,33);
+                break;
+        }
     }
 
 }

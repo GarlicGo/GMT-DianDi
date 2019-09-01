@@ -47,9 +47,10 @@ public class Frag4List_Software extends AppCompatActivity {
 
     private void initData(){
         softwareItemList.add(new SoftwareItem("软件名称","点滴"));
-        softwareItemList.add(new SoftwareItem("版本更新","（v 1.0.1）已是最新版本"));
-        softwareItemList.add(new SoftwareItem("更新日期","2019年8月"));
+        softwareItemList.add(new SoftwareItem("版本更新","（功能版）v 1.0.1"));
+        softwareItemList.add(new SoftwareItem("更新日期","2019年9月"));
         softwareItemList.add(new SoftwareItem("开发团队","枫华科技"));
+//        softwareItemList.add(new SoftwareItem("客户水群","262556715"));
     }
 
 }

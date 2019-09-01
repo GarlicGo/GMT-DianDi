@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/textBlack"
                 android:textSize="20sp"
-                android:text="188"/>
+                android:text="存钱目标"/>
 
         </LinearLayout>
 

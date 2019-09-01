@@ -331,9 +331,9 @@ public class DBSyncer {
                     "id integer primary key autoincrement," +
                     "expectantAmount real," +
                     "startTime integer," +
-                    "duration integer," +
+                    "endTime integer," +
                     "originCard integer," +
-                    "targetCard integer," +
+                    "title text," +
                     "user_info_id integer)");
             try {
                 for (int i=0; i<Plan_Info.length(); i++) {

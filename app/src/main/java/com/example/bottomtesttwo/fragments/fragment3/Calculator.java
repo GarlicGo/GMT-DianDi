@@ -42,10 +42,11 @@ public class Calculator extends AppCompatActivity implements OnClickListener, Da
 
     private long card_records_id;
     private String dp_date;
+    private String display = "0.00";
     private TextView tv_date;
     private TextView tb_note_money;
     private TextView tb_moneyType;
-    private String display = "0.00";
+
     TextView textViewOutcome;
     TextView textViewIncome;
     EditText editText;
