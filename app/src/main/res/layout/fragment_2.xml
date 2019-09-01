@@ -95,7 +95,7 @@
                 android:textColor="@color/textWhite"
                 style="@style/Text.Brown"
                 android:textSize="16sp"
-                android:text="今日推荐：26元"/>
+                android:text="今日推荐"/>
 
         </LinearLayout>
 

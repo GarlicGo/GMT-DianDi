@@ -277,7 +277,7 @@ public class Calculator2 extends AppCompatActivity implements DatePickerDialog.O
             dbOperator.Cud("update card_records set balance='"+tempMoney+"' where id='"+card_records_id2+"'");
         }
 
-        String plan_info_id = saving_records_id;
+        String plan_info_id = "";
         cursor = dbOperator.Query("select * from plan_info where user_info_id='"+id+"' and originCard='1'");
         if(cursor.moveToFirst()){
             plan_info_id = cursor.getString(cursor.getColumnIndex("id"));
@@ -300,6 +300,11 @@ public class Calculator2 extends AppCompatActivity implements DatePickerDialog.O
          *  plan_info_id -> plan_info_id （归属目标）
          *  id -> user_info_id （归属用户）
          */
+
+        if(plan_info_id.equals("")){
+            Toast.makeText(this,"目标异常",Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         dbOperator.Cud("insert into saving_records (id,savingAmount,remarks,date,originCard,targetCard,plan_info_id,user_info_id) values ('"
                 +saving_records_id+"','"

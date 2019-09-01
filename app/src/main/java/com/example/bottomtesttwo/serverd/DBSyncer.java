@@ -342,9 +342,9 @@ public class DBSyncer {
                     values.put("id", curRow.getLong("id"));
                     values.put("expectantAmount", curRow.getDouble("expectantAmount"));
                     values.put("startTime", curRow.getInt("startTime"));
-                    values.put("duration", curRow.getInt("duration"));
+                    values.put("endTime", curRow.getInt("endTime"));
                     values.put("originCard", curRow.getLong("originCard"));
-                    values.put("targetCard", curRow.getLong("targetCard"));
+                    values.put("title", curRow.getString("title"));
                     values.put("user_info_id", curRow.getInt("user_info_id"));
                     db.insert("plan_info", null, values);
                 }
