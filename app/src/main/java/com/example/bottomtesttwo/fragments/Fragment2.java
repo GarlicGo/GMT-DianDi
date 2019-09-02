@@ -117,93 +117,96 @@ public class Fragment2 extends Fragment {
         id = cursor.getInt(cursor.getColumnIndex("id"));
         Log.d("ZXYFrag1","user_info_id :"+id);
         cursor = dbOperator.Query( "select * from plan_info where user_info_id='"+id+"' and originCard='1'");
-        cursor.moveToFirst();
-        String plan_info_id = cursor.getString(cursor.getColumnIndex("id"));
-        startDay = cursor.getInt(cursor.getColumnIndex("startTime"));
-        allMoney = cursor.getDouble(cursor.getColumnIndex("expectantAmount"));
-        enddDate = cursor.getInt(cursor.getColumnIndex("endTime"));
-        naname = cursor.getString(cursor.getColumnIndex("title"));
-        cursor.close();
-        cursor = dbOperator.Query( "select * from saving_records where user_info_id='"+id+"' and plan_info_id='"+plan_info_id+"'");
-        if(cursor.moveToFirst()){
-            do {
 
-                String tip = cursor.getString(cursor.getColumnIndex("remarks"));
-                double number = cursor.getDouble(cursor.getColumnIndex("savingAmount"));
-                long date = cursor.getLong(cursor.getColumnIndex("date"));
-                Frag3Item frag3Item = new Frag3Item(tip,R.mipmap.income_lijin,number,date);
-                long id = cursor.getLong(cursor.getColumnIndex("id"));
-                frag3Item.setAmount_changes_id(id);
-                frag3ItemList.add(frag3Item);
+        if(cursor.moveToFirst()) {
 
-                passMoney = passMoney + number;
+            String plan_info_id = cursor.getString(cursor.getColumnIndex("id"));
+            startDay = cursor.getInt(cursor.getColumnIndex("startTime"));
+            allMoney = cursor.getDouble(cursor.getColumnIndex("expectantAmount"));
+            enddDate = cursor.getInt(cursor.getColumnIndex("endTime"));
+            naname = cursor.getString(cursor.getColumnIndex("title"));
+            cursor.close();
+            cursor = dbOperator.Query( "select * from saving_records where user_info_id='"+id+"' and plan_info_id='"+plan_info_id+"'");
+            if(cursor.moveToFirst()){
+                do {
 
-            }while (cursor.moveToNext());
-            Collections.sort(frag3ItemList, new Comparator<Frag3Item>() {
-                @Override
-                public int compare(Frag3Item o1, Frag3Item o2) {
-                    if (o1.getDate() - o2.getDate() < 0) { //变成 < 可以变成递减排序
-                        return 0;
-                    } else {
-                        return -1;
+                    String tip = cursor.getString(cursor.getColumnIndex("remarks"));
+                    double number = cursor.getDouble(cursor.getColumnIndex("savingAmount"));
+                    long date = cursor.getLong(cursor.getColumnIndex("date"));
+                    Frag3Item frag3Item = new Frag3Item(tip,R.mipmap.income_lijin,number,date);
+                    long id = cursor.getLong(cursor.getColumnIndex("id"));
+                    frag3Item.setAmount_changes_id(id);
+                    frag3ItemList.add(frag3Item);
+
+                    passMoney = passMoney + number;
+
+                }while (cursor.moveToNext());
+                Collections.sort(frag3ItemList, new Comparator<Frag3Item>() {
+                    @Override
+                    public int compare(Frag3Item o1, Frag3Item o2) {
+                        if (o1.getDate() - o2.getDate() < 0) { //变成 < 可以变成递减排序
+                            return 0;
+                        } else {
+                            return -1;
+                        }
                     }
-                }
-            });
+                });
 
-            Calendar calendar = Calendar.getInstance();
-            //获取系统时间
-            int year = calendar.get(Calendar.YEAR);
-            int month = calendar.get(Calendar.MONTH)+1;
-            int day = calendar.get(Calendar.DAY_OF_MONTH);
-            int hour = calendar.get(Calendar.HOUR_OF_DAY);
-            int minute = calendar.get(Calendar.MINUTE);
-            int second = calendar.get(Calendar.SECOND);
-            String nowDate = String.format("%02d%02d%02d",year%100,(month)%100,day%100);
-            int intNowDate = Integer.parseInt(nowDate);
-            startDay = startDay%1000000;
-            enddDate = enddDate%1000000;
-            Log.d("FGDADF","nowData:"+intNowDate+"  startDate:"+startDay +" endDate:"+enddDate);
-            int a = 0;
-            int dateCha = (intNowDate - startDay) + 1;
-            if(intNowDate>enddDate){
-                a=-1;
-            }else {
-                if(dateCha<0){
-                    a = -2;
+                Calendar calendar = Calendar.getInstance();
+                //获取系统时间
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH)+1;
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                int minute = calendar.get(Calendar.MINUTE);
+                int second = calendar.get(Calendar.SECOND);
+                String nowDate = String.format("%02d%02d%02d",year%100,(month)%100,day%100);
+                int intNowDate = Integer.parseInt(nowDate);
+                startDay = startDay%1000000;
+                enddDate = enddDate%1000000;
+                Log.d("FGDADF","nowData:"+intNowDate+"  startDate:"+startDay +" endDate:"+enddDate);
+                int a = 0;
+                int dateCha = (intNowDate - startDay) + 1;
+                if(intNowDate>enddDate){
+                    a=-1;
                 }else {
-                    if(dateCha/1000>0){
-                        a = (dateCha/1000)*365 + a;
-                    }
-                    if((dateCha%1000)/100>0){
-                        a = ((dateCha%1000)/100)*30 + a;
-                    }
-                    if ((dateCha%100)>0){
-                        a = (dateCha%100) + a;
+                    if(dateCha<0){
+                        a = -2;
+                    }else {
+                        if(dateCha/1000>0){
+                            a = (dateCha/1000)*365 + a;
+                        }
+                        if((dateCha%1000)/100>0){
+                            a = ((dateCha%1000)/100)*30 + a;
+                        }
+                        if ((dateCha%100)>0){
+                            a = (dateCha%100) + a;
+                        }
                     }
                 }
+                Log.d("FGDADF","datacha:"+dateCha);
+                Log.d("FGDADF","a:"+a);
+
+
+                textView2.setText("已存"+String.format("%.2f",passMoney)+"元");
+                textTop.setText(naname);
+                if(a==-1){
+                    textView1.setText("已过时间");
+                }else if(a==-2){
+                    textView1.setText("还未开始");
+                }
+                else {
+                    textView1.setText("已存"+a+"天");
+                }
+
+                textBottom.setText(""+String.format("今日推荐：%.2f",allMoney/(enddDate-startDay))+"元");
+
+            }else {
+
             }
-            Log.d("FGDADF","datacha:"+dateCha);
-            Log.d("FGDADF","a:"+a);
 
-
-            textView2.setText("已存"+String.format("%.2f",passMoney)+"元");
-            textTop.setText(naname);
-            if(a==-1){
-                textView1.setText("已过时间");
-            }else if(a==-2){
-                textView1.setText("还未开始");
-            }
-            else {
-                textView1.setText("已存"+a+"天");
-            }
-
-            textBottom.setText(""+String.format("今日推荐：%.2f",allMoney/(enddDate-startDay))+"元");
-
-        }else {
-
+            recyclerView.setAdapter(frag3Adapter);
         }
-
-        recyclerView.setAdapter(frag3Adapter);
     }
 
 

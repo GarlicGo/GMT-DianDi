@@ -275,7 +275,7 @@ public class DBSyncer {
                     ContentValues values = new ContentValues();
                     values.put("id", curRow.getLong("id"));
                     values.put("savingAmount", curRow.getDouble("savingAmount"));
-                    values.put("remarks", curRow.getInt("remarks"));
+                    values.put("remarks", curRow.getString("remarks"));
                     values.put("date", curRow.getInt("date"));
                     values.put("time", curRow.getInt("time"));
                     values.put("originCard", curRow.getLong("originCard"));

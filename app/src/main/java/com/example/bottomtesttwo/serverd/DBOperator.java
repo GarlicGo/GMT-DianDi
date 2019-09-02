@@ -182,6 +182,7 @@ public class DBOperator {
             switch (status) {
                 case 0:
                     Log.d("MYX", "Seek failed.");
+                    Toast.makeText(LoginActivity.instance,"账号不存在或密码错误",Toast.LENGTH_SHORT).show();
                     break;
                 default:
                     DBSyncer dbSyncer = DBSyncer.getSyncer();
@@ -191,8 +192,6 @@ public class DBOperator {
                     prefEditor = pref.edit();
                     prefEditor.putString("id",""+status);
                     prefEditor.apply();
-
-
 
                     Toast.makeText(LoginActivity.instance,"登录成功",Toast.LENGTH_SHORT).show();
                     Log.d("ZXY", "Registered successfully, and id is: "+status);
