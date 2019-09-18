@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bottomtesttwo.R;
 import com.example.bottomtesttwo.activity.MainActivity;
@@ -23,6 +24,7 @@ import com.example.bottomtesttwo.fragments.fragment1.Frag1Item2;
 import com.example.bottomtesttwo.fragments.fragment3.Frag3Adapter;
 import com.example.bottomtesttwo.fragments.fragment3.Frag3Item;
 import com.example.bottomtesttwo.serverd.DBOperator;
+import com.example.bottomtesttwo.util.TargetMoneyUtil;
 
 import org.w3c.dom.Text;
 
@@ -199,7 +201,10 @@ public class Fragment2 extends Fragment {
                     textView1.setText("已存"+a+"天");
                 }
 
-                textBottom.setText(""+String.format("今日推荐：%.2f",allMoney/(enddDate-startDay))+"元");
+//                Toast.makeText(MainActivity.instance,""+allMoney,Toast.LENGTH_SHORT)
+//                        .show();
+
+                textBottom.setText(""+String.format("今日推荐：%.2f",TargetMoneyUtil.getMoney(dateCha,allMoney,10))+"元");
 
             }else {
 

@@ -1,7 +1,6 @@
 package com.example.bottomtesttwo.fragments.fragment4;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.database.Cursor;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -11,7 +10,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -19,14 +17,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.bottomtesttwo.R;
-import com.example.bottomtesttwo.fragments.fragment3.Calculator;
 import com.example.bottomtesttwo.fragments.fragment4.List.SoftwareAdapter;
 import com.example.bottomtesttwo.fragments.fragment4.List.SoftwareItem;
-import com.example.bottomtesttwo.fragments.login.LoginActivity;
 import com.example.bottomtesttwo.serverd.DBOperator;
 import com.example.bottomtesttwo.util.SoftInputUtil;
 
@@ -137,10 +131,12 @@ public class Frag4List_Personal extends AppCompatActivity implements View.OnClic
         recyclerView = (RecyclerView)findViewById(R.id.personal_recycle_view);
         layoutManager = new LinearLayoutManager(this);//指定布局方式（线性布局）
         recyclerView.setLayoutManager(layoutManager);
-
+        initEdit();
         initData();
         softwareAdapter = new SoftwareAdapter(this,softwareItemList);
         recyclerView.setAdapter(softwareAdapter);
+
+
     }
 
 
@@ -189,12 +185,48 @@ public class Frag4List_Personal extends AppCompatActivity implements View.OnClic
         }else {
             addItem("绑定邮箱",cursor.getString(cursor.getColumnIndex("email")));
         }
-
+        cursor.close();
 
     }
 
     private void addItem(String string1,String string2){
         softwareItemList.add(new SoftwareItem(string1,string2));
+    }
+
+    private void initEdit(){
+        softwareItemList.clear();
+        cursor = dbOperator.Query( "select * from user_info");
+        cursor.moveToFirst();
+        if(cursor.getString(cursor.getColumnIndex("username")).equals("")){
+//            addItem("用户名","空");
+        }else {
+            editText1.setText(cursor.getString(cursor.getColumnIndex("username")));
+        }
+        if(cursor.getString(cursor.getColumnIndex("gender")).equals("")){
+//            addItem("性别","空");
+        }else {
+            String genderTemp = cursor.getString(cursor.getColumnIndex("gender"));
+            if (genderTemp.equals("0")){
+                checkBox0.setChecked(true);
+                checkBox1.setChecked(false);
+//                addItem("性别","女");
+            }else if(genderTemp.equals("1")){
+                checkBox0.setChecked(false);
+                checkBox1.setChecked(true);
+//                addItem("性别","男");
+            }
+        }
+        if(cursor.getString(cursor.getColumnIndex("personalSignature")).equals("")){
+//            addItem("个性签名","空");
+        }else {
+            editText3.setText(cursor.getString(cursor.getColumnIndex("personalSignature")));
+        }
+        if(cursor.getString(cursor.getColumnIndex("birthday")).equals("")){
+//            addItem("出生日期","空");
+        }else {
+            addItem("出生日期",cursor.getString(cursor.getColumnIndex("birthday")));
+        }
+        cursor.close();
     }
 
     @Override
@@ -235,8 +267,10 @@ public class Frag4List_Personal extends AppCompatActivity implements View.OnClic
         String username = editText1.getText().toString();
         String birthDate = editText2.getText().toString();
         String personalSign = editText3.getText().toString();
+        cursor = dbOperator.Query( "select * from user_info");
         cursor.moveToFirst();
         id = cursor.getInt(cursor.getColumnIndex("id"));
+
         if(checkBox0.isChecked()){
             dbOperator.Cud("update user_info set gender='0' where id='"+id+"'");
         }else {

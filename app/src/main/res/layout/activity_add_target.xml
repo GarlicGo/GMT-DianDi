@@ -26,12 +26,12 @@
                 android:layout_height="match_parent"
                 android:paddingRight="10dp"
                 android:src="@drawable/back"
-                android:onClick="calculator1_tar_onClick1"
+                android:onClick="calculator2_tar_onClick1"
                 android:layout_marginLeft="15dp"/>
 
             <TextView
                 android:layout_marginTop="14dp"
-                android:layout_marginLeft="110dp"
+                android:layout_marginLeft="170dp"
                 android:layout_toRightOf="@+id/frag1_cal1_back_btn2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

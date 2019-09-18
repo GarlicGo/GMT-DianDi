@@ -1,7 +1,6 @@
 package com.example.bottomtesttwo.fragments.fragment3;
 
 import com.example.bottomtesttwo.R;
-import com.example.bottomtesttwo.db.Information_Account;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;

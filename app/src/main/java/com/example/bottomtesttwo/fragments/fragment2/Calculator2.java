@@ -306,7 +306,7 @@ public class Calculator2 extends AppCompatActivity implements DatePickerDialog.O
             return;
         }
 
-        dbOperator.Cud("insert into saving_records (id,savingAmount,remarks,date,originCard,targetCard,plan_info_id,user_info_id) values ('"
+        dbOperator.Cud("insert into saving_records(id,savingAmount,remarks,date,originCard,targetCard,plan_info_id,user_info_id) values ('"
                 +saving_records_id+"','"
                 +display+"','"
                 +remarks+"','"

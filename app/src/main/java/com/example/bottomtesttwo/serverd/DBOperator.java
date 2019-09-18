@@ -1,6 +1,4 @@
 package com.example.bottomtesttwo.serverd;
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,16 +8,10 @@ import android.util.Log;
 import android.widget.Toast;
 
 
-import com.example.bottomtesttwo.activity.MainActivity;
-import com.example.bottomtesttwo.fragments.login.LoginActivity;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.example.bottomtesttwo.activity.login.LoginActivity;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -127,13 +119,20 @@ public class DBOperator {
             switch (status) {
                 case -1:
                     Log.d("MYX", "This mail has been bound.");
+                    Toast.makeText(LoginActivity.instance,"邮箱已被注册",Toast.LENGTH_SHORT).show();
                     break;
                 case 0:
                     Log.d("MYX", "Fail to register.");
+                    Toast.makeText(LoginActivity.instance,"注册失败",Toast.LENGTH_SHORT).show();
                     break;
                 default:
+                    pref = PreferenceManager.getDefaultSharedPreferences(LoginActivity.instance);
+                    prefEditor = pref.edit();
+                    prefEditor.putString("id",""+status);
+                    prefEditor.apply();
                     DBSyncer dbSyncer = DBSyncer.getSyncer();
                     dbSyncer.start(status);
+                    Toast.makeText(LoginActivity.instance,"注册成功，正在跳转",Toast.LENGTH_SHORT).show();
                     Log.d("ZXY", "Registered successfully, and id is: "+status);
                     break;
             }
@@ -182,7 +181,7 @@ public class DBOperator {
             switch (status) {
                 case 0:
                     Log.d("MYX", "Seek failed.");
-                    Toast.makeText(LoginActivity.instance,"账号不存在或密码错误",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.instance,"邮箱不存在或密码错误",Toast.LENGTH_SHORT).show();
                     break;
                 default:
                     DBSyncer dbSyncer = DBSyncer.getSyncer();
@@ -193,7 +192,7 @@ public class DBOperator {
                     prefEditor.putString("id",""+status);
                     prefEditor.apply();
 
-                    Toast.makeText(LoginActivity.instance,"登录成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.instance,"登录成功，正在跳转",Toast.LENGTH_SHORT).show();
                     Log.d("ZXY", "Registered successfully, and id is: "+status);
                     break;
             }

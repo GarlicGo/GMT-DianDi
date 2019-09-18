@@ -13,34 +13,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.bottomtesttwo.activity.MainActivity;
 import com.example.bottomtesttwo.R;
-import com.example.bottomtesttwo.db.Record_Saving;
 import com.example.bottomtesttwo.fragments.fragment1.Calculator11Update;
 import com.example.bottomtesttwo.fragments.fragment1.Calculator12Update;
 import com.example.bottomtesttwo.fragments.fragment1.Frag1Item1;
 import com.example.bottomtesttwo.fragments.fragment1.Frag1Item1Adapter;
 import com.example.bottomtesttwo.fragments.fragment1.Frag1Item2;
 import com.example.bottomtesttwo.fragments.fragment1.Frag1Item2Adapter;
-import com.example.bottomtesttwo.fragments.fragment3.Frag3Adapter;
-import com.example.bottomtesttwo.fragments.fragment3.Frag3Item;
-import com.example.bottomtesttwo.fragments.fragment4.Frag4Adapter;
-import com.example.bottomtesttwo.fragments.fragment4.Frag4List_Email;
-import com.example.bottomtesttwo.fragments.fragment4.Frag4List_Personal;
-import com.example.bottomtesttwo.fragments.fragment4.Frag4List_Phone;
-import com.example.bottomtesttwo.fragments.fragment4.Frag4List_Secret;
-import com.example.bottomtesttwo.fragments.fragment4.Frag4List_Software;
-import com.example.bottomtesttwo.fragments.login.LoginActivity;
 import com.example.bottomtesttwo.serverd.DBOperator;
-
-import org.litepal.crud.DataSupport;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.app.Activity.RESULT_OK;
 
 //卡包页
 public class Fragment1 extends Fragment implements View.OnClickListener{

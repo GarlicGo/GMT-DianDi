@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+
     <application
         android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
@@ -19,7 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".fragments.fragment2.AddTarget"></activity>
+        <activity android:name=".fragments.fragment4.HeadImage"></activity>
+        <activity android:name=".fragments.fragment2.AddTarget" />
         <activity android:name=".fragments.fragment3.charts.AnalyzeAll" />
         <activity android:name=".fragments.fragment3.charts.AnalyzeIncome" />
         <activity android:name=".fragments.fragment3.MoneyTypeListActivity" />
@@ -30,7 +32,7 @@
         <activity android:name=".fragments.fragment1.Calculator1_1" />
         <activity android:name=".fragments.fragment2.Calculator2" />
         <activity
-            android:name=".fragments.login.LoginActivity"
+            android:name=".activity.login.LoginActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

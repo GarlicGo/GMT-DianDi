@@ -1,78 +1,140 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:id="@+id/frag4_user_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/second_bg"
+            android:layout_width="match_parent"
+            android:layout_height="195dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/head" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/second_head"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/head"
+            app:civ_border_color="#FFFFFF"
+
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/frag4_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="150dp"
+            android:text="用户名"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+
+        <!--<ImageView-->
+            <!--android:layout_width="35dp"-->
+            <!--android:layout_height="35dp"-->
+            <!--android:layout_marginLeft="350dp"-->
+            <!--android:layout_marginTop="145dp"-->
+            <!--android:src="@drawable/user_righ" />-->
+
+
+    </FrameLayout>
 
     <!--android:background="#45709EF3"-->
 
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="200dp"-->
+    <!--android:background="#45709EF3"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:gravity="center"-->
+    <!--&gt;-->
+
+    <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_marginTop="20dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_marginRight="20dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_gravity="center"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_width="120dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_height="110dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:src="@mipmap/qiruan"/>&ndash;&gt;-->
+
+
+    <!--<ImageView-->
+    <!--android:layout_marginTop="20dp"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_width="100dp"-->
+    <!--android:layout_height="100dp"-->
+    <!--android:src="@mipmap/gayestmaple2"/>-->
+
+
+    <!--</LinearLayout>-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/frag4_recycle_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="#45709EF3"
-        android:orientation="horizontal"
-        android:gravity="center"
-        >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/textWhite"
+        android:orientation="horizontal">
 
-        <!--<ImageView-->
-            <!--android:layout_marginTop="20dp"-->
-            <!--android:layout_marginRight="20dp"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_width="120dp"-->
-            <!--android:layout_height="110dp"-->
-            <!--android:src="@mipmap/qiruan"/>-->
-
-
-        <ImageView
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@mipmap/gayestmaple2"/>
-
-
+        <TextView
+            android:id="@+id/frag4_out"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="退出登录"
+            android:textColor="#E60303"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/frag4_recycle_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-        </android.support.v7.widget.RecyclerView>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
     <LinearLayout
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:orientation="horizontal"
         android:layout_marginBottom="20dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="5dp"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@mipmap/qiruan2"/>
+            android:src="@mipmap/qiruan2" />
 
 
         <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="齐鲁软件大赛定制版"/>
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:text="齐鲁软件大赛定制版" />
 
     </LinearLayout>
 

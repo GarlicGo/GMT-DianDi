@@ -49,7 +49,7 @@ public class AddTarget extends AppCompatActivity implements DatePickerDialog.OnD
     public void calculator2_tar_onClick1(View view){
         switch (view.getId()){
             case R.id.frag2_cal1_back_btn2://返回键
-                finish();
+//                finish();
                 break;
             case R.id.frag1_tar_button1://取消
                 finish();

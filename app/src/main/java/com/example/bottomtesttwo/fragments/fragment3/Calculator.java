@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -94,6 +95,8 @@ public class Calculator extends AppCompatActivity implements OnClickListener, Da
         initIncomeSorts();
         recyclerView = (RecyclerView)findViewById(R.id.calculator_recycle_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        GridLayoutManager layoutManager1 = new GridLayoutManager(this,5);
+
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(layoutManager);
         calculatorSpendAdapter = new CalculatorAdapter(calculatorSpendSortItemList);

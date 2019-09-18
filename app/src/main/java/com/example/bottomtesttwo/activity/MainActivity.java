@@ -1,23 +1,43 @@
 package com.example.bottomtesttwo.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.ContentUris;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
+import android.preference.PreferenceManager;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.example.bottomtesttwo.R;
@@ -25,26 +45,27 @@ import com.example.bottomtesttwo.fragments.Fragment1;
 import com.example.bottomtesttwo.fragments.Fragment2;
 import com.example.bottomtesttwo.fragments.Fragment3;
 import com.example.bottomtesttwo.fragments.Fragment4;
+import com.example.bottomtesttwo.fragments.fragment1.Calculator11Update;
 import com.example.bottomtesttwo.fragments.fragment1.Calculator1_1;
 import com.example.bottomtesttwo.fragments.fragment1.Calculator1_2;
 import com.example.bottomtesttwo.fragments.fragment2.AddTarget;
 import com.example.bottomtesttwo.fragments.fragment2.Calculator2;
 import com.example.bottomtesttwo.fragments.fragment2.TargetListActivity;
 import com.example.bottomtesttwo.fragments.fragment3.Calculator;
-import com.example.bottomtesttwo.fragments.fragment3.Frag3Item1;
-import com.example.bottomtesttwo.fragments.fragment3.Frag3Item2;
-import com.example.bottomtesttwo.fragments.login.LoginActivity;
+import com.example.bottomtesttwo.activity.login.LoginActivity;
+import com.example.bottomtesttwo.fragments.fragment4.Frag4List_Personal;
+import com.example.bottomtesttwo.fragments.fragment4.HeadImage;
 import com.example.bottomtesttwo.serverd.DBOperator;
-import com.example.bottomtesttwo.serverd.DBSyncer;
 import com.example.bottomtesttwo.util.StatusBar.StatusBarUtil;
 
-import org.litepal.LitePal;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
-import java.util.ArrayList;
-import java.util.List;
 
-
-public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener,View.OnClickListener {
 
     private BottomNavigationView mBottomNavigationView;//用于接收底部菜单栏实体
     private MenuItem mMenuItem;//用于获取菜单栏当前处于哪一个位置
@@ -54,7 +75,19 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private Fragment4 fragment4;
     public FloatingActionButton addBottom;
 
+    public static final int TAKE_PHOTO = 100;
+    public static final int CHOOSE_PHOTO = 200;
+    private ImageView picture;
+    private Uri imageUri;
+
     public static MainActivity instance = null;
+
+    private SharedPreferences pref;
+    private SharedPreferences.Editor prefEditor;
+
+    DBOperator dbOperator = DBOperator.getOperator();
+    Cursor cursor;
+    private int id ;
 
     private boolean loginOlineState = false;
 //    private Fragment1 fragment1 = new Fragment1();
@@ -80,19 +113,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         setContentView(R.layout.activity_main);
         replaceFragment(new Fragment1());//默认加载fragment1页面
 
-//        login();
         instance = this;
-        LoginActivity.instance.finish();
+//        LoginActivity.instance.finish();
 
-//        DBOperator dbOperator = DBOperator.getOperator();
-//        Cursor cursor;
-//        int id ;
-//        cursor = dbOperator.Query( "select * from user_info");
-//        cursor.moveToFirst();
-//        id = cursor.getInt(cursor.getColumnIndex("id"));
-//        cursor.close();
-//        DBSyncer dbSyncer = DBSyncer.getSyncer();
-//        dbSyncer.start(id);
 
         //底部菜单栏实体
         mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bnv);
@@ -169,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
                     case R.id.item_tab4://底部导航栏我点击事件相应
                         replaceFragment(fragment4);
-                        setStatusBar(MainActivity.this,false, true);
+                        setStatusBar(MainActivity.this,false, false);
                         addBottom.setVisibility(View.GONE);
                         return true;
                 }
@@ -250,6 +273,28 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
 //                Toast.makeText(this,"33",Toast.LENGTH_SHORT).show();
                 break;
+
+            case TAKE_PHOTO:
+                if (resultCode == RESULT_OK) {
+                    try {
+                        // 将拍摄的照片显示出来
+                        Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
+                        picture.setImageBitmap(bitmap);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
+            case CHOOSE_PHOTO:
+
+                break;
+
+            case 666:
+                Fragment4 fragment4Temp = (Fragment4)getSupportFragmentManager().findFragmentById(R.id.bolck_fragmelayout);
+                fragment4Temp.loadImage();
+                break;
+            default:
+                break;
         }
     }
 
@@ -288,5 +333,59 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 break;
         }
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.frag4_out:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setIcon(null);//设置图标, 这里设为空值
+                builder.setTitle("登录退出");
+                builder.setMessage("确定要退出本账号吗？");
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface arg0, int arg1){
+                        pref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                        prefEditor = pref.edit();
+                        prefEditor.putString("id","0");
+                        prefEditor.putString("email","0");
+                        prefEditor.putString("password","0");
+                        prefEditor.apply();
+
+                        Intent outIntent = new Intent(MainActivity.this,LoginActivity.class);
+                        startActivity(outIntent);
+                        finish();
+                        Toast.makeText(MainActivity.this,"推出成功",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface arg0,int arg1){
+
+                    }
+                });
+                AlertDialog b = builder.create();
+                b.show();//显示对话框
+                break;
+            case R.id.frag4_user_info:
+//                Intent userinfoIntent = new Intent(this, Frag4List_Personal.class);
+//                startActivity(userinfoIntent);
+                break;
+            case R.id.second_head:
+//                if(ContextCompat.checkSelfPermission(MainActivity.instance, Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+//                    ActivityCompat.requestPermissions(MainActivity.instance,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+//                }else {
+//                    openAlbum();
+//                }
+//                if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+//                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{ Manifest.permission. WRITE_EXTERNAL_STORAGE }, 1);
+//                } else {
+//                    openAlbum();
+//                }
+                Intent intentHead = new Intent(this, HeadImage.class);
+                startActivityForResult(intentHead,666);
+                break;
+        }
+    }
+
+
 
 }

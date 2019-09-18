@@ -197,7 +197,13 @@ public class AnalyzeIncome extends AppCompatActivity {
 
 
 
-        int average2 = average/count;
+        int average2;
+        if(count==0){
+            all = 0;
+            average2 = 0;
+        }else {
+            average2 = average/count;
+        }
 
         TextView textView1 = (TextView)findViewById(R.id.ana2_1);
         TextView textView2 = (TextView)findViewById(R.id.ana2_2);

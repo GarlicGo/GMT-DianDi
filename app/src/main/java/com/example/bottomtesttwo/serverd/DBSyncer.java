@@ -8,7 +8,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.bottomtesttwo.activity.MainActivity;
-import com.example.bottomtesttwo.fragments.login.LoginActivity;
+import com.example.bottomtesttwo.activity.login.LoginActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -158,7 +158,7 @@ public class DBSyncer {
             db.execSQL("drop table if exists user_info");
             db.execSQL("create table user_info(" +
                     "id integer primary key autoincrement," +
-                    "avatar blob," +
+                    "avatar text," +
                     "username text," +
                     "password text," +
                     "gender integer," +
@@ -173,7 +173,7 @@ public class DBSyncer {
                 if (User_Info != null) {
                     ContentValues values = new ContentValues();
                     values.put("id", User_Info.getInt("id"));
-                    values.put("avatar", User_Info.getString("avatar").getBytes());
+                    values.put("avatar", User_Info.getString("avatar"));
                     values.put("username", User_Info.getString("username"));
                     values.put("password", User_Info.getString("password"));
                     values.put("gender", User_Info.getString("gender"));
